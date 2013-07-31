@@ -1,0 +1,13 @@
+# ~/.tmuxinator/.yml
+# you can make as many tabs as you wish...
+
+name: waschpakete
+root: ~/code/waschpakete
+windows:
+    - editor: vim
+    - shell: git pull origin master
+    - server: 
+        layout: even-vertical
+        panes: 
+            - ssh wp
+            - ssh wp-mysql

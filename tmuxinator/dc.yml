@@ -1,0 +1,13 @@
+# ~/.tmuxinator/.yml
+# you can make as many tabs as you wish...
+
+name: diaetcoach
+root: ~/code/diaetcoach
+pre_window: rvm use 2.0.0@rails
+windows:
+    - editor: vim
+    - shell: 
+        layout: even-vertical
+        panes:
+            -
+            - rails s
