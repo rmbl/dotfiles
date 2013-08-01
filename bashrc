@@ -38,7 +38,7 @@ export LSCOLORS="exfxcxdxbxegedabagacad"
 eval $(keychain --eval --agents ssh -Q --quiet id_rsa github_rsa)
 
 function _update_ps1() {
-   export PS1="$(~/bin/powerline-shell/powerline-shell.py --colorize-hostname $?)"
+   export PS1="$(~/.powerline-shell.py --colorize-hostname $?)"
 }
 
 export PROMPT_COMMAND="_update_ps1"
