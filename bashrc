@@ -20,15 +20,9 @@ alias nano='vim'
 # Custom stuff
 set -o vi
 export EDITOR="vim"
-
-#alias s="tmux attach -t work || tmux new -s work"
-#alias p="tmux attach -t private || tmux new -s private"
 export DISPLAY=:5
 
 export TERM=xterm-256color
-case "$TERM" in
-	xterm-256color) color_prompt=yes;;
-esac
 
 # Options
 shopt -s cdspell
@@ -44,9 +38,8 @@ export LSCOLORS="exfxcxdxbxegedabagacad"
 eval $(keychain --eval --agents ssh -Q --quiet id_rsa github_rsa)
 
 function _update_ps1() {
-   export PS1="$(~/bin/powerline-shell/powerline-shell.py $?)"
+   export PS1="$(~/bin/powerline-shell/powerline-shell.py --colorize-hostname $?)"
 }
 
 export PROMPT_COMMAND="_update_ps1"
 
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
