@@ -7,7 +7,7 @@ windows:
     - editor: vim
     - shell: git pull origin master
     - server: 
-        layout: even-vertical
+        layout: even-horizontal
         panes: 
             - ssh wp
             - ssh wp-mysql
