@@ -11,7 +11,7 @@ syntax on
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 
-colorscheme twilight256
+colorscheme hybrid
 
 set smartindent
 set autoindent
