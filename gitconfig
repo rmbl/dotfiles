@@ -2,6 +2,7 @@
   branch = auto
   diff = auto
   status = auto
+  ui = true
 
 [color "branch"]
   current = yellow reverse
@@ -18,8 +19,16 @@
   added = yellow
   changed = green
   untracked = cyan
+
 [user]
-	name = Philipp Gildein
-	email = philipp@gildein.com
+  name = Philipp Gildein
+  email = philipp@gildein.com
+
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[push]
+  default = simple
+
+[core]
+  excludesfile = ~/.gitignore_global
