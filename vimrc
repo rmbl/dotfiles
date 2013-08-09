@@ -1,5 +1,5 @@
 " Disable autocomplpop for now
-let g:acp_enableAtStartup = 0 
+let g:acp_enableAtStartup = 0
 
 let mapleader=","
 let maplocalleader=",,"
@@ -61,7 +61,7 @@ let g:ctrlp_max_files = 15000
 " Airline
 let g:airline_enable_branch = 1
 let g:airline_enable_syntastic = 1
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'tomorrow'
 let g:airline_powerline_fonts = 1
 
 " Syntastic
@@ -75,7 +75,7 @@ map <C-f> :NERDTreeToggle<CR>
 " TagList
 map <C-t> :TagbarToggle<CR>
 
-autocmd filetype svn,*commit* setlocal spell 
+autocmd filetype svn,*commit* setlocal spell
 
 autocmd FileType ruby,eruby,html
       \ set expandtab |
