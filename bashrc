@@ -2,7 +2,8 @@
 # ~/.bashrc
 #
 
-export PATH="$PATH:/usr/bin/site_perl:/home/rmbl/.local/bin"
+export GOPATH="$HOME/.go"
+export PATH="$PATH:/usr/bin/site_perl:$HOME/.local/bin:/usr/local/heroku/bin:$GOPATH/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # If not running interactively, don't do anything
@@ -20,8 +21,6 @@ alias nano='vim'
 # Custom stuff
 set -o vi
 export EDITOR="vim"
-export DISPLAY=:5
-
 export TERM=xterm-256color
 
 # Options

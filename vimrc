@@ -44,7 +44,12 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
+if &term =~ '256color'
+      " Disable Background Color Erase (BCE) so that color schemes
+      "   " work properly when Vim is used inside tmux and GNU screen.
+      "     " See also http://snk.tuxfamily.org/log/vim-256color-bce.html
+      set t_ut=
+endif
 set encoding=utf8
 set ffs=unix,dos,mac
 
