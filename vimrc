@@ -54,9 +54,6 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 set cursorline
-hi clear CursorLine
-hi CursorLineNR cterm=bold
-
 
 " CtrlP
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
@@ -66,8 +63,9 @@ let g:ctrlp_max_files = 15000
 " Airline
 let g:airline_enable_branch = 1
 let g:airline_enable_syntastic = 1
-let g:airline_theme = 'tomorrow'
+let g:airline_theme = 'powerlineish'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " Syntastic
 let g:syntastic_java_javac_config_file_enabled = 1
@@ -79,6 +77,10 @@ map <C-b> :BufExplorer<CR>
 map <C-f> :NERDTreeToggle<CR>
 " TagList
 map <C-t> :TagbarToggle<CR>
+
+" Bind buffer switching to Ctrl+Tab
+map <C-Tab> :bnext<cr>
+map <C-S-Tab> :bprevious<cr>
 
 autocmd filetype svn,*commit* setlocal spell
 
