@@ -17,6 +17,7 @@ PS1='[\u@\h \W]\$ '
 
 # USE VIM FFS!!
 alias nano='vim'
+alias vi='vim'
 
 # Custom stuff
 set -o vi
