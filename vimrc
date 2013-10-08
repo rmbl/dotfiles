@@ -46,8 +46,8 @@ set t_vb=
 set tm=500
 if &term =~ '256color'
       " Disable Background Color Erase (BCE) so that color schemes
-      "   " work properly when Vim is used inside tmux and GNU screen.
-      "     " See also http://snk.tuxfamily.org/log/vim-256color-bce.html
+      " work properly when Vim is used inside tmux and GNU screen.
+      " See also http://snk.tuxfamily.org/log/vim-256color-bce.html
       set t_ut=
 endif
 set encoding=utf8
@@ -84,8 +84,39 @@ map <C-S-Tab> :bprevious<cr>
 
 autocmd filetype svn,*commit* setlocal spell
 
-autocmd FileType ruby,eruby,html
+autocmd FileType ruby,eruby,html,coffee
       \ set expandtab |
       \ set shiftwidth=2 |
       \ set softtabstop=2
 
+" Auto highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" Strip trailing whitespace on save
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+if executable('coffeetags')
+  let g:tagbar_type_coffee = {
+        \ 'ctagsbin' : 'coffeetags',
+        \ 'ctagsargs' : '',
+        \ 'kinds' : [
+        \ 'f:functions',
+        \ 'o:object',
+        \ ],
+        \ 'sro' : ".",
+        \ 'kind2scope' : {
+        \ 'f' : 'object',
+        \ 'o' : 'object',
+        \ }
+        \ }
+endif
