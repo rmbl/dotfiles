@@ -20,7 +20,6 @@ alias nano='vim'
 alias vi='vim'
 
 # Custom stuff
-set -o vi
 export EDITOR="vim"
 export TERM=xterm-256color
 

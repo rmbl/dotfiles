@@ -63,6 +63,7 @@ let g:ctrlp_max_files = 15000
 " Airline
 let g:airline_enable_branch = 1
 let g:airline_enable_syntastic = 1
+let g:airline_enable_tagbar = 0
 "let g:airline_theme = 'powerlineish'
 let g:airline_theme = 'murmur'
 let g:airline_powerline_fonts = 1
@@ -80,8 +81,8 @@ map <C-f> :NERDTreeToggle<CR>
 map <C-t> :TagbarToggle<CR>
 
 " Bind buffer switching to Ctrl+Tab
-map <C-Tab> :bnext<cr>
-map <C-S-Tab> :bprevious<cr>
+map <C-Tab> :bnext<CR>
+map <C-S-Tab> :bprevious<CR>
 
 autocmd filetype svn,*commit* setlocal spell
 
