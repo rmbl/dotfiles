@@ -3,7 +3,7 @@
 #
 
 export GOPATH="$HOME/.go"
-export PATH="$PATH:/usr/bin/site_perl:$HOME/.local/bin:/usr/local/heroku/bin:$GOPATH/bin"
+export PATH="/usr/local/bin:/usr/local/opt/ruby/bin:$PATH:/usr/bin/site_perl:$HOME/.local/bin:$GOPATH/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # If not running interactively, don't do anything
