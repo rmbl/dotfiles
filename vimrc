@@ -13,12 +13,20 @@ set omnifunc=syntaxcomplete#Complete
 
 colorscheme hybrid
 
+" Set GUI only options
+if has("gui_running")
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h12
+endif
+
 set smartindent
 set autoindent
 set smarttab
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+" Hybrid number mode
+set relativenumber
 set number
 
 set showcmd
