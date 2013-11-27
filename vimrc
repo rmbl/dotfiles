@@ -39,18 +39,20 @@ set hlsearch
 set nowrap
 set ff=unix
 
+" Enable mouse support
+set mouse=a
+
 if v:version >= 703
     " undo settings
     set undodir=~/.vim/undofiles
     set undofile
 endif
 
-set t_Co=256
-
 " No error sounds
 set noerrorbells
 set novisualbell
 set t_vb=
+set t_Co=256
 set tm=500
 if &term =~ '256color'
       " Disable Background Color Erase (BCE) so that color schemes
@@ -91,6 +93,9 @@ map <C-t> :TagbarToggle<CR>
 " Bind buffer switching to Ctrl+Tab
 map <C-Tab> :bnext<CR>
 map <C-S-Tab> :bprevious<CR>
+
+" Add pastetoggle to paste without tag completion, etc
+set pastetoggle=<F2>
 
 autocmd filetype svn,*commit* setlocal spell
 
