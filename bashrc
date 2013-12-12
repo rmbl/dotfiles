@@ -9,7 +9,7 @@ export PATH="/usr/local/bin:/usr/local/opt/ruby/bin:$PATH:/usr/bin/site_perl:$HO
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-#alias ls='ls --color=auto'
+alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -la'
 export LESSS='-R'
@@ -34,12 +34,12 @@ export CLICOLOR=1
 export LSCOLORS="exfxcxdxbxegedabagacad"
 
 # Start ssh-agent with all keys
-if hash keychain 2>/dev/null; then 
+if hash keychain 2>/dev/null; then
     eval $(keychain --eval --agents ssh -Q --quiet id_rsa github_rsa)
 fi
 
 function _update_ps1() {
-   export PS1="$(~/.powerline-shell.py --colorize-hostname $?)"
+   export PS1="$(powershell username hostname path git prompt $?)"
 }
 
 export PROMPT_COMMAND="_update_ps1"

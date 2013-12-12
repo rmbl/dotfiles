@@ -82,3 +82,6 @@
 [submodule "vim/bundle/editorconfig"]
 	path = vim/bundle/editorconfig
 	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "vim/bundle/tmuxline"]
+	path = vim/bundle/tmuxline
+	url = https://github.com/edkolev/tmuxline.vim.git

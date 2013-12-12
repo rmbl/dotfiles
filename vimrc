@@ -11,7 +11,8 @@ syntax on
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 
-colorscheme hybrid
+"colorscheme hybrid
+colorscheme molokai
 
 " Set GUI only options
 if has("gui_running")

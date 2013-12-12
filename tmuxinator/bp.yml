@@ -5,5 +5,9 @@ name: branchpunch
 root: ~/code/branchpunch
 windows:
     - editor: vim
-    - shell: git pull origin master
+    - shell:
+        layout: even-horizontal
+        panes:
+            - git pull origin master
+            - rails s
     - server: ssh bp
