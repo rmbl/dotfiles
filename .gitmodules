@@ -88,3 +88,6 @@
 [submodule "vim/bundle/csv"]
 	path = vim/bundle/csv
 	url = https://github.com/chrisbra/csv.vim/
+[submodule "vim/bundle/dart-syntax"]
+	path = vim/bundle/dart-syntax
+	url = https://github.com/dart-lang/dart-vim-plugin.git
