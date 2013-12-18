@@ -9,7 +9,10 @@ export PATH="/usr/local/bin:/usr/local/opt/ruby/bin:$PATH:/usr/bin/site_perl:$HO
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
+uname=$(uname -s)
+if [ "$uname" != "Darwin" ]; then
+    alias ls='ls --color=auto'
+fi
 alias ll='ls -l'
 alias la='ls -la'
 export LESSS='-R'
