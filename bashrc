@@ -37,7 +37,7 @@ export CLICOLOR=1
 export LSCOLORS="exfxcxdxbxegedabagacad"
 
 # Start ssh-agent with all keys
-if [ hash keychain 2>/dev/null ] && [ -e ~/.ssh/id_rsa ] && [ -e ~/.ssh/github_rsa ]; then
+if hash keychain 2>/dev/null && [ -f ~/.ssh/id_rsa ] && [ -f ~/.ssh/github_rsa ]; then
     eval $(keychain --eval --agents ssh -Q --quiet id_rsa github_rsa)
 fi
 
