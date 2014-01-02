@@ -79,6 +79,7 @@ let g:airline_enable_tagbar = 0
 let g:airline_theme = 'murmur'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:tmuxline_preset = 'full'
 
 " Syntastic
 let g:syntastic_java_javac_config_file_enabled = 1
