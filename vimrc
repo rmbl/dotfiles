@@ -11,8 +11,9 @@ syntax on
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 
-"colorscheme hybrid
-colorscheme molokai
+set background=dark
+colorscheme hybrid
+"colorscheme molokai
 
 " Set GUI only options
 if has("gui_running")
@@ -42,6 +43,11 @@ set ff=unix
 
 " Enable mouse support
 set mouse=a
+
+if isdirectory('/tmp/vim-' . $USER) == 0
+  :silent !install -dm700 /tmp/vim-$USER >/dev/null 2>&1
+endif
+set directory=/tmp/vim-$USER//
 
 if v:version >= 703
     " undo settings
