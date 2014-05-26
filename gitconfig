@@ -26,6 +26,9 @@
 
 [alias]
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  ci = commit
+  co = checkout
+  pl = pull
 
 [push]
   default = simple
