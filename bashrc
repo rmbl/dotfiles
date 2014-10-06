@@ -11,7 +11,9 @@ export PATH="/usr/local/bin:/usr/local/opt/ruby/bin:$PATH:/usr/bin/site_perl:$HO
 
 uname=$(uname -s)
 if [ "$uname" != "Darwin" ]; then
-    alias ls='ls --color=auto'
+    alias ls='ls --color=auto -h'
+else
+    alias ls='ls -h'
 fi
 alias ll='ls -l'
 alias la='ls -la'
@@ -39,6 +41,13 @@ export LSCOLORS="exfxcxdxbxegedabagacad"
 # Start ssh-agent with all keys
 if hash keychain 2>/dev/null && [ -f ~/.ssh/id_rsa ] && [ -f ~/.ssh/github_rsa ]; then
     eval $(keychain --eval --agents ssh -Q --quiet id_rsa github_rsa)
+fi
+
+# Load Bash Completion
+if hash brew 2>/dev/null && [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+elif [ -r /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
 fi
 
 function _update_ps1() {
