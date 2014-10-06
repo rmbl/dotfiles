@@ -67,7 +67,7 @@ if &term =~ '256color'
       " See also http://snk.tuxfamily.org/log/vim-256color-bce.html
       set t_ut=
 endif
-set encoding=utf8
+set encoding=utf-8
 set ffs=unix,dos,mac
 
 set cursorline
