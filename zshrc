@@ -1,7 +1,6 @@
 source ~/.zsh/checks.zsh
 source ~/.zsh/colors.zsh
 source ~/.zsh/setopt.zsh
-source ~/.zsh/plugins.zsh
 source ~/.zsh/exports.zsh
 source ~/.zsh/prompt.zsh
 source ~/.zsh/completions.zsh
@@ -10,4 +9,5 @@ source ~/.zsh/functions.zsh
 source ~/.zsh/bindkeys.zsh
 source ~/.zsh/history.zsh
 source ~/.zsh/zsh_hooks.zsh
+source ~/.zsh/plugins.zsh
 source ~/.zsh/rvm.zsh

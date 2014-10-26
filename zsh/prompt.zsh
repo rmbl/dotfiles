@@ -6,6 +6,10 @@ function prompt_char {
     echo '○'
 }
 
+function box_name {
+    [ -f ~/.box-name ] && cat ~/.box-name || hostname -s
+}
+
 GIT_PROMPT_SYMBOL="%{$fg[blue]%}±"
 GIT_PROMPT_PREFIX="%{$fg[green]%} [%{$reset_color%}"
 GIT_PROMPT_SUFFIX="%{$fg[green]%}]%{$reset_color%}"
@@ -61,10 +65,9 @@ function parse_git_state() {
 # If inside a Git repository, print its branch and state
 function git_prompt_string() {
   local git_where="$(parse_git_branch)"
-  [ -n "$git_where" ] && echo "%{$fg[blue]%}${git_where#(refs/heads/|tags/)}$(parse_git_state)"
+  [ -n "$git_where" ] && echo "%{$fg[green]%}${git_where#(refs/heads/|tags/)}$(parse_git_state)"
 }
 
-local user_host="%{$fg_bold[green]%}%n@%m%{$reset_color%}"
 local current_dir="%{$fg_bold[blue]%} %c%{$reset_color%}"
 
 function _update_ruby_version() {
@@ -79,8 +82,12 @@ function _update_ruby_version() {
 }
 chpwd_functions+=(_update_ruby_version)
 
+function current_dir {
+    echo $(pwd | sed -e "s,^$HOME,~,")
+}
+
 PROMPT='
-╭─${user_host} ${current_dir} $(git_prompt_string)%{$reset_color%}
+╭─ ${PR_BOLD_GREEN}%n@$(box_name)%{$reset_color%} ${PR_BOLD_BLUE}$(current_dir)%{$reset_color%} $(git_prompt_string)%{$reset_color%}
 %4{╰─%B$(prompt_char)%b %}'
 RPS1="${return_code}"
 
