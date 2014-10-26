@@ -4,7 +4,7 @@ compctl -W ~/Dropbox/Workspace -/ p
 vm() {
     local vm_name='vm'
     if [[ -z "$1" ]] ; then
-        echo "Usage: vm (start|stop|ssh)"
+        echo "Usage: vm (start|stop|ssh|status)"
     else
         image=$(tugboat images | grep ${vm_name} | egrep -o '\d+')
         case $1 in
@@ -38,6 +38,18 @@ vm() {
                 echo 'SSHing to VM'
                 shift
                 tugboat ssh -q ${vm_name} $@
+                ;;
+            status)
+                state=$(tugboat droplets | egrep "^${vm_name}")
+                if [ -z $state ]; then
+                    echo "VM is currently ${BOLD_RED}stopped${reset_color}."
+                else
+                    echo "VM is currently ${BOLD_GREEN}running${reset_color}."
+                fi
+                ;;
+            ip)
+                ip=$(tugboat droplets | grep ${vm_name} | egrep -o "\d+\.\d+\.\d+\.\d+")
+                echo $ip
                 ;;
         esac
     fi
