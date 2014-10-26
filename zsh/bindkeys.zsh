@@ -12,18 +12,18 @@ bindkey "^D"      delete-char                          # ctrl-d
 bindkey "^F"      forward-char                         # ctrl-f
 bindkey "^B"      backward-char                        # ctrl-b
 
-if [ -f /usr/local/opt/zsh-history-substring-search/zsh-history-substring-search.zsh ]; then
-    # bind UP and DOWN arrow keys
-    bindkey "$terminfo[kcuu1]" history-substring-search-up
-    bindkey "$terminfo[kcud1]" history-substring-search-down
+zmodload zsh/terminfo
 
-    # bind P and N for EMACS mode
-    bindkey -M emacs '^P' history-substring-search-up
-    bindkey -M emacs '^N' history-substring-search-down
+# bind UP and DOWN arrow keys
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 
-    # bind k and j for VI mode
-    bindkey -M vicmd 'k' history-substring-search-up
-    bindkey -M vicmd 'j' history-substring-search-down
-fi
+# bind P and N for EMACS mode
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
+# bind k and j for VI mode
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 bindkey -v   # Default to standard vi bindings, regardless of editor string
