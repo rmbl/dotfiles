@@ -1,6 +1,7 @@
 autoload -U colors && colors # Enable colors in prompt
 
 function prompt_char {
+    [[ $UID == 0 || $EUID == 0 ]] && echo '#' && return
     git branch >/dev/null 2>/dev/null && echo '±' && return
     hg root >/dev/null 2>/dev/null && echo '☿' && return
     echo '○'
