@@ -3,18 +3,13 @@
 #
 
 export GOPATH="$HOME/.go"
-export PATH="/usr/local/bin:/usr/local/opt/ruby/bin:$PATH:/usr/bin/site_perl:$HOME/.local/bin:$GOPATH/bin:$HOME/.rvm/bin"
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/local/opt/ruby/bin:$PATH:/usr/bin/site_perl:$HOME/.local/bin:$GOPATH/bin:bin:$HOME/.rvm/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-uname=$(uname -s)
-if [ "$uname" != "Darwin" ]; then
-    alias ls='ls --color=auto -h'
-else
-    alias ls='ls -h'
-fi
+alias ls='ls --color=auto -h'
 alias ll='ls -l'
 alias la='ls -la'
 export LESSS='-R'
@@ -56,3 +51,6 @@ function _update_ps1() {
 
 export PROMPT_COMMAND="_update_ps1"
 
+
+# added by travis gem
+[ -f /Users/rmbl/.travis/travis.sh ] && source /Users/rmbl/.travis/travis.sh
