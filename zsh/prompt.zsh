@@ -87,7 +87,7 @@ function current_dir {
 }
 
 PROMPT='
-╭─ ${PR_BOLD_GREEN}%n@$(box_name)%{$reset_color%} ${PR_BOLD_BLUE}$(current_dir)%{$reset_color%} $(git_prompt_string)%{$reset_color%}
+╭─ %(!.${PR_BOLD_RED}.${PR_BOLD_GREEN})%n@$(box_name)%{$reset_color%} ${PR_BOLD_BLUE}$(current_dir)%{$reset_color%} $(git_prompt_string)%{$reset_color%}
 %4{╰─%B$(prompt_char)%b %}'
 RPS1="${return_code}"
 
