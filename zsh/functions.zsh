@@ -131,21 +131,6 @@ function zsh_recompile {
     source ~/.zshrc
 }
 
-function ss {
-    if [ -e script/server ]; then
-        script/server $@
-    else
-        script/rails server $@
-    fi
-}
-function sc {
-    if [ -e script/rails ]; then
-        script/rails console $@
-    else
-        script/console $@
-    fi
-}
-
 magic-enter () {
     if [[ -z $BUFFER ]]; then
         if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
