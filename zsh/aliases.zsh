@@ -1,5 +1,6 @@
 # Ruby
 alias rake="noglob rake" # necessary to make rake work inside of zsh
+alias spring="nocorrect spring"
 alias be='bundle exec'
 alias bx='bundle exec'
 alias cpd='cap production deploy'
