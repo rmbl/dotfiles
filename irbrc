@@ -85,4 +85,3 @@ end
 Debundle.debundle!
 
 require 'irbtools'
-require 'irbtools/more'
