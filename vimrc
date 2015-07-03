@@ -1,25 +1,23 @@
-" Disable autocomplpop for now
-let g:acp_enableAtStartup = 0
-
 let mapleader=","
 let maplocalleader=",,"
 
-set nocompatible
+"set nocompatible
 
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
-set omnifunc=syntaxcomplete#Complete
 
 set background=dark
-colorscheme hybrid
-"colorscheme molokai
+colorscheme molokai
 
 " Set GUI only options
 if has("gui_running")
-    set guifont=Source\ Code\ Pro\ for\ Powerline:h12
+    set guifont=Source\ Code\ Pro:h12
 endif
 
+set noexpandtab
+set copyindent
+set preserveindent
 set smartindent
 set autoindent
 set smarttab
@@ -27,13 +25,19 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+set nocp " fixes conemu problems?
+
+set clipboard+=unnamed " Yanks go on clipboard insteads
+
 " Hybrid number mode
 set relativenumber
 set number
 
 set showcmd
 set showmode
+set showmatch
 set hidden
+set laststatus=2
 
 set incsearch
 set hlsearch
@@ -44,11 +48,6 @@ set ff=unix
 " Enable mouse support
 set mouse=a
 
-if isdirectory('/tmp/vim-' . $USER) == 0
-  :silent !install -dm700 /tmp/vim-$USER >/dev/null 2>&1
-endif
-set directory=/tmp/vim-$USER//
-
 if v:version >= 703
     " undo settings
     set undodir=~/.vim/undofiles
@@ -58,34 +57,24 @@ endif
 " No error sounds
 set noerrorbells
 set novisualbell
-set t_vb=
-set t_Co=256
-set tm=500
-if &term =~ '256color'
-      " Disable Background Color Erase (BCE) so that color schemes
-      " work properly when Vim is used inside tmux and GNU screen.
-      " See also http://snk.tuxfamily.org/log/vim-256color-bce.html
-      set t_ut=
-endif
+
 set encoding=utf-8
 set ffs=unix,dos,mac
 
 set cursorline
 
+set term=xterm
+set t_Co=256
+let &t_AB="\e[48;5%dm"
+let &t_AF="\e[38;5%dm"
+set vb t_vb=
+
 " CtrlP
+set wildmenu " Completion menu
+set wildmode=list:longest
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_max_files = 15000
-
-" Airline
-let g:airline_enable_branch = 1
-let g:airline_enable_syntastic = 1
-let g:airline_enable_tagbar = 0
-"let g:airline_theme = 'powerlineish'
-let g:airline_theme = 'murmur'
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:tmuxline_preset = 'full'
 
 " Syntastic
 let g:syntastic_java_javac_config_file_enabled = 1
@@ -128,18 +117,3 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-if executable('coffeetags')
-  let g:tagbar_type_coffee = {
-        \ 'ctagsbin' : 'coffeetags',
-        \ 'ctagsargs' : '',
-        \ 'kinds' : [
-        \ 'f:functions',
-        \ 'o:object',
-        \ ],
-        \ 'sro' : ".",
-        \ 'kind2scope' : {
-        \ 'f' : 'object',
-        \ 'o' : 'object',
-        \ }
-        \ }
-endif
