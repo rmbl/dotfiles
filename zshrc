@@ -5,7 +5,7 @@ autoload -U colors && colors
 # Cyan for users, red for root, magenta for system users
 local _time="%{$fg[yellow]%}[%*]"
 local _path="%B%{$fg[green]%}%(8~|...|)%7~"
-local _usercol
+
 if [[ $EUID -lt 1000 ]]; then
 	# red for root, magenta for system users
 	_usercol="%(!.%{$fg[red]%}.%{$fg[magenta]%})"
@@ -20,7 +20,7 @@ PROMPT="╭─ $_time $_user $_path
 
 RPROMPT='${vcs_info_msg_0_}' # git branch
 if [[ ! -z "$SSH_CLIENT" ]]; then
-	RPROMPT="$RPROMPT ⇄" # ssh icon
+	RPROMPT="$RPROMPT " # ssh icon
 fi
 
 PROMPT_EOL_MARK=""
@@ -182,8 +182,8 @@ alias perms="stat -c '%A %a %n'"
 # Functions
 #
 
-p() { cd ~/Copy/Workspace/$1; }
-compctl -W ~/Copy/Workspace -/ p
+p() { cd ~/Dropbox/Workspace/$1; }
+compctl -W ~/Dropbox/Workspace -/ p
 
 # make a backup of a file
 # https://github.com/grml/grml-etc-core/blob/master/etc/zsh/zshrc

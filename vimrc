@@ -1,14 +1,14 @@
 let mapleader=","
 let maplocalleader=",,"
 
-"set nocompatible
+set nocompatible
 
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
 set background=dark
-colorscheme molokai
+colorscheme znake
 
 " Set GUI only options
 if has("gui_running")
@@ -25,7 +25,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-set nocp " fixes conemu problems?
+"set nocp " fixes conemu problems?
 
 set clipboard+=unnamed " Yanks go on clipboard insteads
 
@@ -42,7 +42,9 @@ set laststatus=2
 set incsearch
 set hlsearch
 
-set nowrap
+set wrap
+set linebreak
+set nolist
 set ff=unix
 
 " Enable mouse support
@@ -63,17 +65,19 @@ set ffs=unix,dos,mac
 
 set cursorline
 
-set term=xterm
+set term=xterm-256color
 set t_Co=256
-let &t_AB="\e[48;5%dm"
-let &t_AF="\e[38;5%dm"
+"let &t_AB="\e[48;5%dm"
+"let &t_AF="\e[38;5%dm"
+set t_AB=[48;5;%dm
+set t_AF=[38;5;%dm
 set vb t_vb=
 
 " CtrlP
 set wildmenu " Completion menu
 set wildmode=list:longest
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|vendor|node_modules)$'
 let g:ctrlp_max_files = 15000
 
 " Syntastic

@@ -36,4 +36,4 @@
 [core]
   excludesfile = ~/.gitignore_global
 	fileMode = false
-	autocrlf = true
+#	autocrlf = true
