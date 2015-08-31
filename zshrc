@@ -40,11 +40,15 @@ HISTFILE=$HOME/.zsh_history
 # shell options
 setopt autocd # assume "cd" when a command is a directory
 setopt histignorealldups # Substitute commands in the prompt
-setopt sharehistory # Share the same history between all shells
+#setopt sharehistory # Share the same history between all shells
 setopt promptsubst # required for git plugin
 # setopt extendedglob
 # Extended glob syntax, eg ^ to negate, <x-y> for range, (foo|bar) etc.
 # Backwards-incompatible with bash, so disabled by default.
+
+export LESS='--ignore-case --raw-control-chars'
+export PAGER='less'
+export EDITOR='vim'
 
 # Colors!
 
@@ -319,13 +323,8 @@ if [[ $LANG == "C"  || $LANG == "" ]]; then
 	>&2 echo "$fg[red]The \$LANG variable is not set. This can cause a lot of problems.$reset_color"
 fi
 
-SSHAGENT=/usr/bin/ssh-agent
-SSHAGENTARGS="-s"
-if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
-	eval `$SSHAGENT $SSHAGENTARGS`
-	trap "kill $SSH_AGENT_PID" 0
-
-	ssh-add ~/.ssh/id_rsa
+if type "keychain" > /dev/null; then
+    eval `keychain --eval id_rsa`
 fi
 
 #source $ZSH/checks.zsh
