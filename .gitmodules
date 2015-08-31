@@ -115,3 +115,30 @@
 [submodule "vim/bundle/vim-twig"]
 	path = vim/bundle/vim-twig
 	url = https://github.com/evidens/vim-twig.git
+[submodule "vim/bundle/php-vim"]
+	path = vim/bundle/php-vim
+	url = https://github.com/StanAngeloff/php.vim.git
+[submodule "vim/bundle/vimproc.vim"]
+	path = vim/bundle/vimproc.vim
+	url = https://github.com/Shougo/vimproc.vim.git
+[submodule "vim/bundle/phpcomplete-extended"]
+	path = vim/bundle/phpcomplete-extended
+	url = https://github.com/m2mdas/phpcomplete-extended.git
+[submodule "vim/bundle/less"]
+	path = vim/bundle/less
+	url = https://github.com/groenewege/vim-less.git
+[submodule "vim/bundle/youcompleteme"]
+	path = vim/bundle/youcompleteme
+	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "vim/bundle/lightline"]
+	path = vim/bundle/lightline
+	url = https://github.com/itchyny/lightline.vim
+[submodule "vim/bundle/ag"]
+	path = vim/bundle/ag
+	url = https://github.com/rking/ag.vim.git
+[submodule "vim/bundle/rust"]
+	path = vim/bundle/rust
+	url = https://github.com/rust-lang/rust.vim.git
+[submodule "vim/bundle/racer"]
+	path = vim/bundle/racer
+	url = https://github.com/phildawes/racer.git
