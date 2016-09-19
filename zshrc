@@ -16,7 +16,7 @@ local _user="%{$_usercol%}%n@%M"
 local _prompt="${(r:$SHLVL*2::%#:)}"
 
 PROMPT="╭─ $_time $_user $_path
-%{$fg[white]%}╰─%B$_prompt%b%f%k "
+%{$fg[white]%}%b╰─%B$_prompt%b%f%k "
 
 RPROMPT='${vcs_info_msg_0_}' # git branch
 if [[ ! -z "$SSH_CLIENT" ]]; then
@@ -182,12 +182,14 @@ alias json="python -m json.tool"
 # octal+text permissions for files
 alias perms="stat -c '%A %a %n'"
 
+alias drw="docker-compose run web"
+alias drwp="docker-compose run web php -d xdebug.remote_enable=0 -d xdebug.profiler_enable=0 -d xdebug.default_enable=0"
 ##
 # Functions
 #
 
-p() { cd ~/Dropbox/Workspace/$1; }
-compctl -W ~/Dropbox/Workspace -/ p
+p() { cd ~/Workspace/$1; }
+compctl -W ~/Workspace -/ p
 
 # make a backup of a file
 # https://github.com/grml/grml-etc-core/blob/master/etc/zsh/zshrc
@@ -326,6 +328,8 @@ fi
 if type "keychain" > /dev/null; then
     eval `keychain --eval id_rsa`
 fi
+
+export ANDROID_HOME="/home/pgildein/Android/Sdk"
 
 #source $ZSH/checks.zsh
 #source $ZSH/colors.zsh
