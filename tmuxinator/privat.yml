@@ -1,8 +1,0 @@
-# ~/.tmuxinator/.yml
-# you can make as many tabs as you wish...
-
-name: privat
-root: ~/code
-windows:
-  - editor: vim
-  - shell:
