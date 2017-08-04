@@ -26,7 +26,7 @@ fi
 PROMPT_EOL_MARK=""
 
 # add ~/bin to $PATH
-path=(~/bin bin $path)
+path=(~/.bin bin $path)
 
 ##
 # zsh configuration
