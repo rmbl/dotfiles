@@ -17,9 +17,16 @@ for name in *; do
             echo "WARNING: $target exists but is not a symlink."
         fi
     else
-        if [ "$name" != 'install.sh' ] && [ "$name" != 'README.md' ] && [ "$name" != 'osx.sh' ]; then
+        if [ "$name" != "install.sh" ] && [ "$name" != "README.md" ] && [ "$name" != "osx.sh" ] && [ "$name" != "awesome" ]; then
             echo "Creating $target"
             ln -s "$PWD/$name" "$target"
         fi
     fi
 done
+
+# Special case for awesome as it needs to be in .config/awesome
+target="$HOME/.config/awesome"
+if [ ! -e "$target" ]; then
+    ln -s "$PWD/awesome" "$target"
+    ln -s "$target/rc.lua.personal" "$target/rc.lua"
+fi
