@@ -121,9 +121,6 @@
 [submodule "vim/bundle/vimproc.vim"]
 	path = vim/bundle/vimproc.vim
 	url = https://github.com/Shougo/vimproc.vim.git
-[submodule "vim/bundle/phpcomplete-extended"]
-	path = vim/bundle/phpcomplete-extended
-	url = https://github.com/m2mdas/phpcomplete-extended.git
 [submodule "vim/bundle/less"]
 	path = vim/bundle/less
 	url = https://github.com/groenewege/vim-less.git
