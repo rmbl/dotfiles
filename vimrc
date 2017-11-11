@@ -65,13 +65,15 @@ set ffs=unix,dos,mac
 
 set cursorline
 
-set term=xterm-256color
-set t_Co=256
-"let &t_AB="\e[48;5%dm"
-"let &t_AF="\e[38;5%dm"
-set t_AB=[48;5;%dm
-set t_AF=[38;5;%dm
-set vb t_vb=
+if !has('nvim')
+    set term=xterm-256color
+    set t_Co=256
+    "let &t_AB="\e[48;5%dm"
+    "let &t_AF="\e[38;5%dm"
+    set t_AB=[48;5;%dm
+    set t_AF=[38;5;%dm
+    set vb t_vb=
+endif
 
 " CtrlP
 set wildmenu " Completion menu
