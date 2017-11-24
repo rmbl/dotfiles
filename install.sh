@@ -10,23 +10,34 @@ echo "______________________________________________"
 echo
 echo "Installing dotfiles into user's home directory"
 
-for name in *; do
-    target="$HOME/.$name"
-    if [ -e "$target" ]; then
-        if [ ! -L "$target" ]; then
-            echo "WARNING: $target exists but is not a symlink."
+lnif() {
+    if [ -e $2 ]; then
+        if [ ! -L $2 ]; then
+            echo "WARNING: $2 exists but is not a symlink."
         fi
     else
-        if [ "$name" != "install.sh" ] && [ "$name" != "README.md" ] && [ "$name" != "osx.sh" ] && [ "$name" != "awesome" ]; then
-            echo "Creating $target"
-            ln -s "$PWD/$name" "$target"
-        fi
+        ln -s $1 $2
     fi
-done
+}
 
-# Special case for awesome as it needs to be in .config/awesome
-target="$HOME/.config/awesome"
-if [ ! -e "$target" ]; then
-    ln -s "$PWD/awesome" "$target"
-    ln -s "$target/rc.lua.personal" "$target/rc.lua"
-fi
+# Config files
+lnif $PWD/bashrc $HOME/.bashrc
+lnif $PWD/gemrc $HOME/.gemrc
+lnif $PWD/gitconfig $HOME/.gitconfig
+lnif $PWD/gitignore_global $HOME/.gitignore_global
+lnif $PWD/irbrc $HOME/.irbrc
+lnif $PWD/tmux.conf $HOME/.tmux.conf
+lnif $PWD/tmux.theme.conf $HOME/.tmux.theme.conf
+lnif $PWD/vimrc $HOME/.vimrc
+lnif $PWD/Xresources $HOME/.Xresources
+lnif $PWD/zshrc $HOME/.zshrc
+
+# Config directories
+mkdir -p $HOME/.config
+lnif $PWD/awesome $HOME/.config/awesome
+lnif $PWD/awesome/rc.lua.personal $PWD/awesome/rc.lua
+lnif $PWD/bin $HOME/.bin
+lnif $PWD/nvim $HOME/.config/nvim
+lnif $PWD/vim $HOME/.vim
+lnif $PWD/zsh $HOME/.zsh
+
