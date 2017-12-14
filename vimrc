@@ -8,7 +8,7 @@ syntax on
 filetype plugin indent on
 
 set background=dark
-colorscheme znake
+colorscheme atom
 
 " Set GUI only options
 if has("gui_running")
@@ -102,8 +102,6 @@ map <C-S-Tab> :bprevious<CR>
 
 " Add pastetoggle to paste without tag completion, etc
 set pastetoggle=<F2>
-
-autocmd filetype svn,*commit* setlocal spell
 
 autocmd FileType ruby,eruby,html,coffee
       \ set expandtab |
