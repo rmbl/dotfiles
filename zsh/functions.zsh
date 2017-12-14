@@ -1,5 +1,5 @@
-p() { cd ~/Dropbox/Workspace/$1; }
-compctl -W ~/Dropbox/Workspace -/ p
+p() { cd ~/Workspace/$1; }
+compctl -W ~/Workspace -/ p
 
 # Start/Stop DO vms using tugboat cli
 vm() {
@@ -148,9 +148,9 @@ bindkey "^M" magic-enter
 
 # make a backup of a file
 # https://github.com/grml/grml-etc-core/blob/master/etc/zsh/zshrc
-bk() {
-	cp -a "$1" "${1}_$(date --iso-8601=seconds)"
-}
+#bk() {
+#	cp -a "$1" "${1}_$(date --iso-8601=seconds)"
+#}
 
 # display a list of supported colors
 function lscolors {
