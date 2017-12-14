@@ -1,6 +1,7 @@
 p() { cd ~/Dropbox/Workspace/$1; }
 compctl -W ~/Dropbox/Workspace -/ p
 
+# Start/Stop DO vms using tugboat cli
 vm() {
     local vm_name='vm'
     if [[ -z "$1" ]] ; then
@@ -144,3 +145,74 @@ magic-enter () {
 }
 zle -N magic-enter
 bindkey "^M" magic-enter
+
+# make a backup of a file
+# https://github.com/grml/grml-etc-core/blob/master/etc/zsh/zshrc
+bk() {
+	cp -a "$1" "${1}_$(date --iso-8601=seconds)"
+}
+
+# display a list of supported colors
+function lscolors {
+	((cols = $COLUMNS - 4))
+	s=$(printf %${cols}s)
+	for i in {000..$(tput colors)}; do
+		echo -e $i $(tput setaf $i; tput setab $i)${s// /=}$(tput op);
+	done
+}
+
+# print a separator banner, as wide as the terminal
+function hr {
+	print ${(l:COLUMNS::=:)}
+}
+
+# urlencode text
+function urlencode {
+	print "${${(j: :)@}//(#b)(?)/%$[[##16]##${match[1]}]}"
+}
+
+# get public ip
+function myip {
+	local api
+	case "$1" in
+		"-4")
+			api="http://v4.ipv6-test.com/api/myip.php"
+			;;
+		"-6")
+			api="http://v6.ipv6-test.com/api/myip.php"
+			;;
+		*)
+			api="http://ipv6-test.com/api/myip.php"
+			;;
+	esac
+	curl -s "$api"
+	echo # Newline.
+}
+
+# Create short urls via http://goo.gl using curl(1).
+# Contributed back to grml zshrc
+# API reference: https://code.google.com/apis/urlshortener/
+function zurl {
+	if [[ -z $1 ]]; then
+		print "USAGE: $0 <URL>"
+		return 1
+	fi
+
+	local url=$1
+	local api="https://www.googleapis.com/urlshortener/v1/url"
+	local data
+
+	# Prepend "http://" to given URL where necessary for later output.
+	if [[ $url != http(s|)://* ]]; then
+		url="http://$url"
+	fi
+	local json="{\"longUrl\": \"$url\"}"
+
+	data=$(curl --silent -H "Content-Type: application/json" -d $json $api)
+	# Match against a regex and print it
+	if [[ $data =~ '"id": "(http://goo.gl/[[:alnum:]]+)"' ]]; then
+		print $match
+	fi
+}
+
+
