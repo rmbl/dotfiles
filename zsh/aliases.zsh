@@ -64,6 +64,10 @@ alias json="python -m json.tool"
 # octal+text permissions for files
 alias perms="stat -c '%A %a %n'"
 
+# Run commands in the web container using docker-compose
 alias drw="docker-compose run -e PHP_IDE_CONFIG=serverName=0.0.0.0 web"
 alias drwp="docker-compose run web php -d xdebug.remote_enable=0 -d xdebug.profiler_enable=0 -d xdebug.default_enable=0"
 
+# Switch keyboard layout
+alias setus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys"
+alias setde="setxkbmap de"
