@@ -1,5 +1,7 @@
 export ZSH=$HOME/.zsh
 
+source $ZSH/setopt.zsh
+
 autoload -U colors && colors
 # Default colors:
 # Cyan for users, red for root, magenta for system users
@@ -58,16 +60,15 @@ if [[ $LANG == "C"  || $LANG == "" ]]; then
 	>&2 echo "$fg[red]The \$LANG variable is not set. This can cause a lot of problems.$reset_color"
 fi
 
+source $ZSH/plugins.zsh
 source $ZSH/aliases.zsh
-source $ZSH/setopt.zsh
 source $ZSH/exports.zsh
 source $ZSH/completions.zsh
-source $ZSH/vcs.zsh
 source $ZSH/functions.zsh
 source $ZSH/bindkeys.zsh
 source $ZSH/history.zsh
 source $ZSH/zsh_hooks.zsh
-source $ZSH/plugins.zsh
+source $ZSH/vcs.zsh
 
 source $ZSH/nvm.sh
 #source $ZSH/rvm.sh
