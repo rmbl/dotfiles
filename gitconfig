@@ -10,15 +10,15 @@
   remote = green
 
 [color "diff"]
-  meta = yellow bold
-  commit = green bold
+  meta = "227"
+  commit = 227 bold
   frag = magenta bold
   old = red bold
   new = green bold
   whitespace = red reverse
 [color "diff-highlight"]
   oldNormal = "red bold"
-  oldHighlight = "yellow bold 52"
+  oldHighlight = "red bold 52"
   newNormal = "green bold"
   newHighlight = "green bold 22"
 
@@ -43,4 +43,4 @@
 [core]
   excludesfile = ~/.gitignore_global
   fileMode = false
-  pager = diff-highlight | diff-so-fancy | less -r
+  pager = diff-so-fancy | less --tabs=4 -RFX
