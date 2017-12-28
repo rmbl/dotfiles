@@ -9,7 +9,7 @@ export LC_COLLATE=C
 
 export LESS='--ignore-case --raw-control-chars'
 export PAGER='less'
-export EDITOR='vim'
+export EDITOR='nvim'
 
 export ANDROID_HOME="/home/pgildein/Android/Sdk"
 

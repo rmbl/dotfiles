@@ -71,3 +71,6 @@ alias drwp="docker-compose run web php -d xdebug.remote_enable=0 -d xdebug.profi
 # Switch keyboard layout
 alias setus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys"
 alias setde="setxkbmap de"
+
+alias vim="nvim"
+alias vi="nvim"
