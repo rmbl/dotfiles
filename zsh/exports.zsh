@@ -13,3 +13,4 @@ export EDITOR='nvim'
 
 export ANDROID_HOME="/home/pgildein/Android/Sdk"
 
+export LIBVIRT_DEFAULT_URI="qemu:///system"
