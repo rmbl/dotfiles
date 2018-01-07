@@ -10,8 +10,8 @@
   remote = green
 
 [color "diff"]
-  meta = "227"
-  commit = 227 bold
+  meta = "yellow"
+  commit = yellow bold
   frag = magenta bold
   old = red bold
   new = green bold
