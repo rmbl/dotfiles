@@ -45,10 +45,13 @@ Xft.rgba                     : rgb
 
 Xcursor.theme                : Vanilla-DMZ-AA
 
-URxvt.font                   : xft:Terminus:pixelsize=10
-URxvt.boldFont               : xft:Terminus:pixelsize=10
+URxvt*termName               : rxvt-256color
+URxvt.geometry               : 80x30
+URxvt.font                   : xft:Terminus:size=8:antialias=true;hinting=true
+URxvt.boldFont               : xft:Terminus:bold:size=8:antialias=true;hinting=true
 URxvt.letterSpace            : -3
 URxvt.scrollBar              : false
+URxvt.cursorBlink            : true
 URxvt.buffered               : true
 URxvt.iso14755               : false
 URxvt.perl-ext-common        : default,tabbed
