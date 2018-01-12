@@ -72,3 +72,8 @@ source $ZSH/vcs.zsh
 
 source $ZSH/nvm.sh
 #source $ZSH/rvm.sh
+
+# Load system specific stuff from untracked config
+if [[ -f $ZSH/user.zsh ]]; then
+	source $ZSH/user.zsh
+fi
