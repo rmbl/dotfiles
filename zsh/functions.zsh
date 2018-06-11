@@ -1,61 +1,6 @@
 p() { cd ~/Workspace/$1; }
 compctl -W ~/Workspace -/ p
 
-# Start/Stop DO vms using tugboat cli
-vm() {
-    local vm_name='vm'
-    if [[ -z "$1" ]] ; then
-        echo "Usage: vm (start|stop|ssh|status)"
-    else
-        image=$(tugboat images | grep ${vm_name} | egrep -o '\d+')
-        case $1 in
-            start)
-                echo 'Starting VM...'
-                if [ -z ${image} ]; then
-                    tugboat create ${vm_name} -q
-                else
-                    tugboat create ${vm_name} -i ${image} -q
-                fi
-                tugboat wait ${vm_name} -q
-                ;;
-            stop)
-                echo 'Stopping VM...'
-                tugboat halt ${vm_name} -q
-                tugboat wait ${vm_name} --state off -q
-
-                if [ ! -z ${image} ]; then
-                    echo 'Destroying old snapshot...'
-                    tugboat destroy_image -i ${image} -c -q
-                fi
-
-                echo 'Creating Snapshot...'
-                tugboat snapshot ${vm_name} ${vm_name} -q
-                tugboat wait ${vm_name} -q
-
-                echo 'Destroying VM...'
-                tugboat destroy ${vm_name} -q -c
-                ;;
-            ssh)
-                echo 'SSHing to VM'
-                shift
-                tugboat ssh -q ${vm_name} $@
-                ;;
-            status)
-                state=$(tugboat droplets | egrep "^${vm_name}")
-                if [ -z $state ]; then
-                    echo "VM is currently ${BOLD_RED}stopped${reset_color}."
-                else
-                    echo "VM is currently ${BOLD_GREEN}running${reset_color}."
-                fi
-                ;;
-            ip)
-                ip=$(tugboat droplets | grep ${vm_name} | egrep -o "\d+\.\d+\.\d+\.\d+")
-                echo $ip
-                ;;
-        esac
-    fi
-}
-
 # -------------------------------------------------------------------
 # compressed file expander 
 # (from https://github.com/myfreeweb/zshuery/blob/master/zshuery.sh)
