@@ -21,6 +21,7 @@ alias 'dus=du -sckx * | sort -nr' #directories sorted by size
 
 alias ga='git add'
 alias gp='git push'
+alias gpf='git push --force-with-lease'
 alias gl='git log'
 alias gpl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs='git status'
@@ -28,6 +29,7 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 alias gm='git commit -m'
 alias gma='git commit -am'
+alias gca='git commit --amend --no-edit'
 alias gb='git branch'
 alias gc='git checkout'
 alias gcb='git checkout -b'
