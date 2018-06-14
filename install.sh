@@ -38,6 +38,7 @@ lnif $PWD/awesome $HOME/.config/awesome
 lnif $PWD/awesome/rc.lua.personal $PWD/awesome/rc.lua
 lnif $PWD/bin $HOME/.bin
 lnif $PWD/nvim $HOME/.config/nvim
+lnif $PWD/compton.conf $HOME/.config/compton.conf
 lnif $PWD/vim $HOME/.vim
 lnif $PWD/zsh $HOME/.zsh
 
