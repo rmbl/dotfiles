@@ -47,9 +47,9 @@ Xcursor.theme                : Vanilla-DMZ-AA
 
 URxvt*termName               : rxvt-256color
 URxvt.geometry               : 80x30
-URxvt.font                   : xft:Terminus:size=8:antialias=true;hinting=true
-URxvt.boldFont               : xft:Terminus:bold:size=8:antialias=true;hinting=true
-URxvt.letterSpace            : -3
+URxvt.font                   : xft:Meslo LG S DZ:size=12:antialias=true:hinting=true:pixelsize=12
+URxvt.boldFont               : xft:Meslo LG S DZ:bold:size=12:antialias=true:hinting=true:pixelsize=12
+URxvt.letterSpace            : 1
 URxvt.scrollBar              : false
 URxvt.cursorBlink            : true
 URxvt.buffered               : true
