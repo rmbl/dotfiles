@@ -22,6 +22,7 @@ lnif() {
 
 # Config files
 lnif $PWD/bashrc $HOME/.bashrc
+lnif $PWD/dircolors $HOME/.dircolors
 lnif $PWD/gemrc $HOME/.gemrc
 lnif $PWD/gitconfig $HOME/.gitconfig
 lnif $PWD/gitignore_global $HOME/.gitignore_global
@@ -48,4 +49,4 @@ lnif $PWD/fonts/type1 $HOME/.local/share/fonts/type1
 
 echo ""
 echo "Updating font cache ..."
-fc-cache -vf .local/share/fonts
+fc-cache -vf $HOME/.local/share/fonts
