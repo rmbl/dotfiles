@@ -8,7 +8,7 @@ syntax on
 filetype plugin indent on
 
 set background=dark
-colorscheme atom
+colorscheme gruvbox
 
 " Set GUI only options
 if has("gui_running")
@@ -129,11 +129,14 @@ autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <
 " LIGHTLINE CONFIGURATION
 set noshowmode
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
       \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
+	  \ 'component': {
+	  \   'lineinfo': ' %3l:%-2v',
+	  \ },
       \ 'component_function': {
       \   'fugitive': 'MyFugitive',
       \   'filename': 'MyFilename',
@@ -145,9 +148,15 @@ let g:lightline = {
       \ },
       \ 'component_expand': {
       \   'syntastic': 'SyntasticStatuslineFlag',
+      \   'buffers': 'lightline#bufferline#buffers',
       \ },
       \ 'component_type': {
       \   'syntastic': 'error',
+      \   'buffers': 'tabsel',
+      \ },
+      \ 'tabline': {
+      \   'left': [['buffers']],
+      \   'right': [['close']],
       \ }
       \}
 
@@ -157,6 +166,11 @@ let g:lightline.separator = {
 let g:lightline.subseparator = {
 	\   'left': "\uE0B5", 'right': "\uE0B7"
   \}
+
+let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#unicode_symbols = 1
+set showtabline=2  " Show tabline
+set guioptions-=e  " Don't use GUI tabline
 
 function! MyModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
