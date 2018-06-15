@@ -127,6 +127,7 @@ autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <
 
 
 " LIGHTLINE CONFIGURATION
+set noshowmode
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
@@ -147,9 +148,15 @@ let g:lightline = {
       \ },
       \ 'component_type': {
       \   'syntastic': 'error',
-      \ },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
+      \}
+
+let g:lightline.separator = {
+	\   'left': "\uE0B4", 'right': "\uE0B6"
+  \}
+let g:lightline.subseparator = {
+	\   'left': "\uE0B5", 'right': "\uE0B7"
+  \}
 
 function! MyModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'

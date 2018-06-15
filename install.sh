@@ -8,7 +8,7 @@ echo " | (_| | (_) | |_| | | | |  __/\__ \  "
 echo "(_)__,_|\___/ \__|_| |_|_|\___||___/  "
 echo "______________________________________________"
 echo
-echo "Installing dotfiles into user's home directory"
+echo "Installing dotfiles into user's home directory ..."
 
 lnif() {
     if [ -e $2 ]; then
@@ -42,3 +42,10 @@ lnif $PWD/compton.conf $HOME/.config/compton.conf
 lnif $PWD/vim $HOME/.vim
 lnif $PWD/zsh $HOME/.zsh
 
+mkdir -p $HOME/.local/share/fonts
+lnif $PWD/fonts/truetype $HOME/.local/share/fonts/truetype
+lnif $PWD/fonts/type1 $HOME/.local/share/fonts/type1
+
+echo ""
+echo "Updating font cache ..."
+fc-cache -vf .local/share/fonts
