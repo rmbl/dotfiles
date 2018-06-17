@@ -149,7 +149,7 @@
 	path = awesome/lain
 	url = git://github.com/lcpz/lain.git
 [submodule "awesome/awesome-freedesktop"]
-	path = awesome/freedestop
+	path = awesome/freedesktop
 	url = git://github.com/lcpz/awesome-freedesktop.git
 [submodule "awesome/cyclefocus"]
 	path = awesome/cyclefocus
