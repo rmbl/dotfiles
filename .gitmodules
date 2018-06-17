@@ -145,3 +145,12 @@
 [submodule "vim/bundle/gruvbox"]
 	path = vim/bundle/gruvbox
 	url = git@github.com:morhetz/gruvbox.git
+[submodule "awesome/lain"]
+	path = awesome/lain
+	url = git://github.com/lcpz/lain.git
+[submodule "awesome/awesome-freedesktop"]
+	path = awesome/freedestop
+	url = git://github.com/lcpz/awesome-freedesktop.git
+[submodule "awesome/cyclefocus"]
+	path = awesome/cyclefocus
+	url = https://github.com/blueyed/awesome-cyclefocus
