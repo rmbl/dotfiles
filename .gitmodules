@@ -136,9 +136,6 @@
 [submodule "vim/bundle/rust"]
 	path = vim/bundle/rust
 	url = https://github.com/rust-lang/rust.vim.git
-[submodule "awesome"]
-	path = awesome
-	url = https://github.com/rmbl/awesome-copycats.git
 [submodule "vim/bundle/vim-json"]
 	path = vim/bundle/vim-json
 	url = https://github.com/elzr/vim-json.git
