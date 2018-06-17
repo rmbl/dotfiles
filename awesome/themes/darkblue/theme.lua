@@ -20,7 +20,7 @@ theme.fg_urgent                                 = "#282828"
 
 theme.fg_widget                                 = "#32302f"
 
-theme.taglist_bg_focus                          = "#4e9699" 
+theme.taglist_bg_focus                          = "#4e9699"
 theme.taglist_fg_focus                          = "#282828"
 theme.taglist_bg_occupied                       = "#2b5355"
 theme.taglist_fg_occupied                       = "#282828"
@@ -93,7 +93,7 @@ theme.widget_cpu                                = theme.dir .. "/icons/widgets/c
 theme.widget_temp                               = theme.dir .. "/icons/widgets/temp.png"
 theme.widget_net                                = theme.dir .. "/icons/widgets/net.png"
 theme.widget_hdd                                = theme.dir .. "/icons/widgets/ssd.png"
-theme.widget_clock                              = theme.dir .. "/icons/widgets/clock.png" 
+theme.widget_clock                              = theme.dir .. "/icons/widgets/clock.png"
 theme.widget_music                              = theme.dir .. "/icons/widgets/note.png"
 theme.widget_music_on                           = theme.dir .. "/icons/widgets/note_on.png"
 theme.widget_music_pause                        = theme.dir .. "/icons/widgets/pause.png"
@@ -149,7 +149,7 @@ theme.yellow         = "#cc9c00"
 theme.blue           = "#428bca"
 theme.darkred        = "#c92132"
 theme.darkgreen      = "#4d7358"
-theme.darkyellow     = "#f18e38" 
+theme.darkyellow     = "#f18e38"
 theme.gray           = "#5e5e5e"
 theme.violet         = "#8c8ccd"
 theme.pink           = "#B85C8A"
@@ -250,7 +250,7 @@ local bat = lain.widget.bat({
                 bat_icon:set_image(theme.widget_battery_empty)
                 batspr_l:set_image(theme.w13)
                 batspr_r:set_image(theme.w11)
-                widget:set_markup(markup.font(theme.font, markup.bg.color(theme.red, markup.fg.color(theme.fg_widget, " -" .. bat_now.perc .. "% [" .. bat_now.watt .. "W][" .. bat_now.time .. "]"))))     
+                widget:set_markup(markup.font(theme.font, markup.bg.color(theme.red, markup.fg.color(theme.fg_widget, " -" .. bat_now.perc .. "% [" .. bat_now.watt .. "W][" .. bat_now.time .. "]"))))
             elseif tonumber(bat_now.perc) <= 70 then
                 bat_icon:set_image(theme.widget_battery_medium)
                 batspr_l:set_image(theme.w16)
@@ -464,7 +464,7 @@ teamviewer_button:buttons(awful.util.table.join(
   awful.button({ }, 1, function () awful.util.spawn("teamviewer") end)
 ))
 
-function theme.connect(s)
+function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
 
@@ -474,7 +474,7 @@ function theme.connect(s)
         wallpaper = wallpaper(s)
     end
     gears.wallpaper.maximized(wallpaper, 1, true)
-    
+
     -- Tags
     --awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
     layout = { awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[3], awful.layout.layouts[3], awful.layout.layouts[5]}
