@@ -355,7 +355,7 @@ local fs_icon = wibox.widget.imagebox(theme.widget_hdd)
 local fs = lain.widget.fs({
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = theme.fs_font },
     settings = function()
-        local fsp = string.format(" %3.2f %s ", fs_now["/home"].free, fs_now["/home"].units)
+        local fsp = string.format(" %3.2f %s ", fs_now["/"].free, fs_now["/"].units)
         widget:set_markup(markup.font(theme.font, markup.fg.color(theme.fg_widget, fsp)))
     end
 })
@@ -435,33 +435,9 @@ local kbd_widget = wibox.container.background(wibox.container.margin(wibox.widge
 
 -- -- Chrome_button
 local chrome_button = awful.widget.button({ image = theme.chrome })
+chrome_button.forced_width = 20
 chrome_button:buttons(awful.util.table.join(
   awful.button({ }, 1, function () awful.util.spawn("google-chrome-stable") end)
-))
--- vivaldi_button
-local vivaldi_button = awful.widget.button({ image = theme.vivaldi })
-vivaldi_button:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () awful.util.spawn("vivaldi-snapshot") end)
-))
--- webstorm_button
-webstorm_button = awful.widget.button({ image = theme.webstorm })
-webstorm_button:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () awful.util.spawn("webstorm") end)
-))
--- idea_button
-idea_button = awful.widget.button({ image = theme.idea })
-idea_button:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () awful.util.spawn("intellij-idea-ultimate-edition") end)
-))
--- pycharm_button
-pycharm_button = awful.widget.button({ image = theme.pycharm })
-pycharm_button:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () awful.util.spawn("pycharm") end)
-))
--- teamviewer_button
-teamviewer_button = awful.widget.button({ image = theme.teamviewer })
-teamviewer_button:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () awful.util.spawn("teamviewer") end)
 ))
 
 function theme.at_screen_connect(s)
@@ -473,12 +449,12 @@ function theme.at_screen_connect(s)
     if type(wallpaper) == "function" then
         wallpaper = wallpaper(s)
     end
-    gears.wallpaper.maximized(wallpaper, 1, true)
+    gears.wallpaper.maximized(wallpaper, s, true)
 
     -- Tags
-    --awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
-    layout = { awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[3], awful.layout.layouts[3], awful.layout.layouts[5]}
-    awful.tag({ " </> ", " >_ ", " web ", " & ", " etc ", " # " }, s, layout)
+    awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
+    --layout = { awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[3], awful.layout.layouts[3], awful.layout.layouts[5]}
+    --awful.tag({ " </> ", " >_ ", " web ", " & ", " etc ", " # " }, s, layout)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -494,7 +470,7 @@ function theme.at_screen_connect(s)
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
     -- Create a tasklist widget
-    --s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
+    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = 16, bg = theme.bg_normal, fg = theme.fg_focus,  })
@@ -505,16 +481,11 @@ function theme.at_screen_connect(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
-            s.mypromptbox,
             chrome_button,
-            idea_button,
-            pycharm_button,
-            webstorm_button,
-            teamviewer_button,
-            vivaldi_button,
+            s.mypromptbox,
         },
-        --s.mytasklist, -- Middle widget
-        nil,
+        s.mytasklist, -- Middle widget
+        -- nil,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),

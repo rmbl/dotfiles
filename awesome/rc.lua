@@ -55,11 +55,16 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "unclutter -root", "compton --config ~/.config/compton.conf", "nm-applet --sm-disable" }) -- entries must be comma-separated
+run_once({
+    "unclutter -root",
+    "compton --config ~/.config/compton.conf",
+    "nm-applet --sm-disable"
+})
+
 -- }}}
 
 -- {{{ Variable definitions
-local chosen_theme = "multicolor"
+local chosen_theme = "darkblue"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "urxvt"
@@ -68,10 +73,10 @@ local gui_editor   = "code"
 local browser      = "google-chrome-stable"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "www", "dev", "vm", "misc" }
+awful.util.tagnames = { " www ", " </> ", " >_ ", " etc ", " # " }
 awful.layout.layouts = {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
+    awful.layout.suit.floating,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
@@ -90,7 +95,7 @@ awful.layout.layouts = {
     --lain.layout.cascade.tile,
     --lain.layout.centerwork,
     --lain.layout.centerwork.horizontal,
-    --lain.layout.termfair,
+    lain.layout.termfair,
     --lain.layout.termfair.center,
 }
 awful.util.taglist_buttons = awful.util.table.join(
@@ -203,7 +208,7 @@ screen.connect_signal("property::geometry", function(s)
     end
 end)
 -- Create a wibox for each screen and add it
-awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
+awful.screen.connect_for_each_screen(function(s) beautiful.get().at_screen_connect(s) end)
 -- }}}
 
 -- {{{ Mouse bindings
