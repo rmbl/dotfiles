@@ -72,6 +72,9 @@ local editor       = os.getenv("EDITOR") or "vim"
 local gui_editor   = "code"
 local browser      = "google-chrome-stable"
 
+local i3lock_settings   = "betterlockscreen -l dimblur"
+local rofi_settings     = "rofi -show combi"
+
 awful.util.terminal = terminal
 awful.util.tagnames = { " www ", " </> ", " >_ ", " etc ", " # " }
 awful.layout.layouts = {
@@ -439,18 +442,18 @@ globalkeys = awful.util.table.join(
         {description = "volume 0%", group = "hotkeys"}),
 
     -- Copy primary to clipboard (terminals to gtk)
-    awful.key({ modkey }, "c", function () awful.spawn("xsel | xsel -i -b") end,
+    awful.key({ modkey }, "c", function () awful.util.spawn("xsel | xsel -i -b") end,
               {description = "copy terminal to gtk", group = "hotkeys"}),    -- Copy clipboard to primary (gtk to terminals)
-    awful.key({ modkey }, "v", function () awful.spawn("xsel -b | xsel") end,
+    awful.key({ modkey }, "v", function () awful.util.spawn("xsel -b | xsel") end,
               {description = "copy gtk to terminal", group = "hotkeys"}),
     -- User programs
-    awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end,
+    awful.key({ modkey }, "e", function () awful.util.spawn(gui_editor) end,
               {description = "run browser", group = "launcher"}),
-    awful.key({ modkey }, "w", function () awful.spawn(browser) end,
+    awful.key({ modkey }, "w", function () awful.util.spawn(browser) end,
               {description = "run gui editor", group = "launcher"}),
 
     -- Lock screen
-    awful.key({ altkey, "Control" }, "l", function () awful.spawn("slock") end),
+    awful.key({ modkey }, "l", function () awful.util.spawn(i3lock_settings) end),
 
     -- Default
     --[[ Menubar
@@ -467,16 +470,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
 
-    awful.key({ modkey }, "x",
-        function ()
-            awful.prompt.run {
-                prompt       = "Run Lua code: ",
-                textbox      = awful.screen.focused().mypromptbox.widget,
-                exe_callback = awful.util.eval,
-                history_path = awful.util.get_cache_dir() .. "/history_eval"
-            }
-        end,
-        {description = "lua execute prompt", group = "awesome"}),
+    awful.key({ modkey }, "x", function () awful.util.spawn(rofi_settings) end,
+              {description = "rofi prompt", group = "launcher"}),
     --]]
 
     -- Cyclefocus
