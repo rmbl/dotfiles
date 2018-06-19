@@ -422,6 +422,12 @@ globalkeys = awful.util.table.join(
             beautiful.volume.update()
         end,
         {description = "volume down", group = "hotkeys"}),
+    awful.key({}, "XF86AudioMute",
+        function ()
+            os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
+            beautiful.volume.update()
+        end,
+        {description = "toggle mute", group = "hotkeys"}),
     awful.key({ altkey }, "m",
         function ()
             os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
