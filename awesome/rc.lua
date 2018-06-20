@@ -394,9 +394,9 @@ globalkeys = awful.util.table.join(
               {description = "show weather", group = "widgets"}),
 
     -- Brightness
-    awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight -inc 10") end,
+    awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("brightnessctl set +10%") end,
               {description = "+10%", group = "hotkeys"}),
-    awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -dec 10") end,
+    awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("brightnessctl set 10%-") end,
               {description = "-10%", group = "hotkeys"}),
 
     -- ALSA volume control
