@@ -59,7 +59,7 @@ run_once({
     "unclutter -root",
     "compton --config ~/.config/compton.conf",
     "nm-applet --sm-disable",
-    "xautolock -time 10 -locker 'betterscreenlock -l dimblur'"
+    "xautolock -time 10 -locker '/usr/bin/betterlockscreen -l dimblur'"
 })
 
 -- }}}
@@ -73,7 +73,6 @@ local editor       = os.getenv("EDITOR") or "vim"
 local gui_editor   = "code"
 local browser      = "google-chrome-stable"
 
-local i3lock_settings   = "betterlockscreen -l dimblur"
 local rofi_settings     = "rofi -show combi"
 
 awful.util.terminal = terminal
@@ -460,7 +459,7 @@ globalkeys = awful.util.table.join(
               {description = "run gui editor", group = "launcher"}),
 
     -- Lock screen
-    awful.key({ modkey }, "l", function () awful.util.spawn(i3lock_settings) end),
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xautolock -locknow") end),
 
     -- Default
     --[[ Menubar
