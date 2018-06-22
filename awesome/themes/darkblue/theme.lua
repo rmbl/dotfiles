@@ -216,7 +216,7 @@ local batspr_l = wibox.widget.imagebox(theme.w8)
 local batspr_r = wibox.widget.imagebox(theme.w9)
 local bat = lain.widget.bat({
     battery = "BAT0",
-    timeout = 1,
+    timeout = 10,
     notify = "on",
     n_perc = {5,15},
     settings = function()
@@ -276,48 +276,8 @@ local bat = lain.widget.bat({
     end
 })
 
--- Battery
-local batbar = wibox.widget {
-    forced_height    = 1,
-    forced_width     = 45,
-    color            = "#232323",
-    background_color = "#232323",
-    margins          = 1,
-    paddings         = 1,
-    ticks            = true,
-    ticks_size       = 5,
-    widget           = wibox.widget.progressbar,
-}
-
-local batupd = lain.widget.bat({
-    battery = "BAT0",
-    timeout = 1,
-    settings = function()
-        if bat_now.status ~= "N/A" then
-            if bat_now.status == "Charging" then
-                batbar:set_color(theme.blue)
-            elseif bat_now.status == "Full" then
-                batbar:set_color(theme.gray)
-            elseif tonumber(bat_now.perc) <= 35 then
-                batbar:set_color(theme.red)
-            elseif tonumber(bat_now.perc) <= 70 then
-                batbar:set_color(theme.yellow)
-            elseif tonumber(bat_now.perc) <= 90 then
-                batbar:set_color(theme.green)
-            else
-                batbar:set_color(theme.blue)
-            end
-            batbar:set_value(bat_now.perc / 100)
-        else
-            return
-        end
-    end
-})
-local batbg = wibox.container.background(batbar, "#474747", gears.shape.rectangle)
-local bat_widget = wibox.container.margin(batbg, 2, 7, 4, 4)
-
 --local battery_widget = wibox.container.background(wibox.container.margin(wibox.widget { bat_icon, bat_widget, bat.widget, layout = wibox.layout.align.horizontal }, 1, 1), theme.gray)
-local battery_widget1 = wibox.container.background(wibox.container.margin(wibox.widget { bat_icon, bat_widget,  layout = wibox.layout.align.horizontal }, 1, 1), theme.gray)
+local battery_widget1 = wibox.container.background(wibox.container.margin(wibox.widget { bat_icon, layout = wibox.layout.align.horizontal }, 1, 1), theme.gray)
 local battery_widget2 = wibox.container.background(wibox.container.margin(wibox.widget { batspr_l, bat.widget, batspr_r, layout = wibox.layout.align.horizontal }, 0, 0), theme.gray)
 
 -- MEM
