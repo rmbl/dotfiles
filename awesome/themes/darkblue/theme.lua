@@ -32,7 +32,7 @@ theme.taglist_fg_urgent                         = "#282828"
 theme.tasklist_bg_normal                        = "#32302f"
 theme.tasklist_fg_normal                        = "#ebdbb2"
 theme.tasklist_bg_focus                         = "#32302f"
-theme.tasklist_fg_focus                         = "#ebdbb2"
+theme.tasklist_fg_focus                         = "#d79921"
 theme.tasklist_bg_urgent                        = "#C92132"
 theme.tasklist_fg_urgent                        = "#32302f"
 
