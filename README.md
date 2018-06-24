@@ -9,3 +9,11 @@ Installation:
     git clone https://github.com/rmbl/dotfiles
     cd dotfiles
     git submodule update --init
+
+
+Packages:
+=========
+
+ - network-manager-applet
+ - unclutter
+ - compton
