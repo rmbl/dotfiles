@@ -1,7 +1,6 @@
 --[[
 
-     Awesome WM configuration template
-     github.com/lcpz
+     Awesome WM configuration
 
 --]]
 
@@ -16,6 +15,10 @@ local beautiful     = require("beautiful")
 local naughty       = require("naughty")
 
 local config        = require("config")
+-- }}}
+
+-- {{{ Localize date/time
+os.setlocale(os.getenv("LANG"))
 -- }}}
 
 -- {{{ Error handling
