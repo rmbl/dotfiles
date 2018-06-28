@@ -161,7 +161,7 @@ local markup = lain.util.markup
 theme.w1 = theme.dir .. "/icons/display/1.png"
 theme.w2 = theme.dir .. "/icons/display/2.png"
 theme.w3 = theme.dir .. "/icons/display/3.png"
-theme.w4 = theme.dir .. "/icons/display/4.png"
+theme.w4 = theme.dir .. "/icons/display/4-new.png"
 theme.w5 = theme.dir .. "/icons/display/5.png"
 theme.w6 = theme.dir .. "/icons/display/6.png"
 theme.w7 = theme.dir .. "/icons/display/7.png"
@@ -311,15 +311,15 @@ local temp_widget =  wibox.container.background(wibox.container.margin(wibox.wid
 
 
 -- FS
-local fs_icon = wibox.widget.imagebox(theme.widget_hdd)
-local fs = lain.widget.fs({
-    notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = theme.fs_font },
-    settings = function()
-        local fsp = string.format(" %3.2f %s ", fs_now["/"].free, fs_now["/"].units)
-        widget:set_markup(markup.font(theme.font, markup.fg.color(theme.fg_widget, fsp)))
-    end
-})
-local fs_widget =  wibox.container.background(wibox.container.margin(wibox.widget { fs_icon, fs.widget, layout = wibox.layout.align.horizontal }, 0, 0), theme.yellow)
+--local fs_icon = wibox.widget.imagebox(theme.widget_hdd)
+--local fs = lain.widget.fs({
+    --notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = theme.fs_font },
+    --settings = function()
+        --local fsp = string.format(" %3.2f %s ", fs_now["/"].free, fs_now["/"].units)
+        --widget:set_markup(markup.font(theme.font, markup.fg.color(theme.fg_widget, fsp)))
+    --end
+--})
+--local fs_widget =  wibox.container.background(wibox.container.margin(wibox.widget { fs_icon, fs.widget, layout = wibox.layout.align.horizontal }, 0, 0), theme.yellow)
 
 -- ALSA volume bar
 local vol_icon = wibox.widget.imagebox(theme.widget_vol)
@@ -456,8 +456,8 @@ function theme.at_screen_connect(s)
             w2,
             volume_widget,
             -- Fs widget
-            w3,
-            fs_widget,
+            --w3,
+            --fs_widget,
             -- Temp
             w4,
             temp_widget,
