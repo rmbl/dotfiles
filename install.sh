@@ -33,16 +33,18 @@ lnif $PWD/vimrc $HOME/.vimrc
 lnif $PWD/Xresources $HOME/.Xresources
 lnif $PWD/zshrc $HOME/.zshrc
 
-# Config directories
+# .config directories
 mkdir -p $HOME/.config
 lnif $PWD/awesome $HOME/.config/awesome
-lnif $PWD/awesome/rc.lua.personal $PWD/awesome/rc.lua
-lnif $PWD/bin $HOME/.bin
 lnif $PWD/nvim $HOME/.config/nvim
 lnif $PWD/compton.conf $HOME/.config/compton.conf
+
+# Directories
+lnif $PWD/bin $HOME/.bin
 lnif $PWD/vim $HOME/.vim
 lnif $PWD/zsh $HOME/.zsh
 
+# Fonts
 mkdir -p $HOME/.local/share/fonts
 lnif $PWD/fonts/truetype $HOME/.local/share/fonts/truetype
 lnif $PWD/fonts/type1 $HOME/.local/share/fonts/type1
