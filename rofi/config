@@ -1,0 +1,5 @@
+rofi.theme: ~/.config/rofi/gruvbox.rasi
+
+rofi.lines: 10
+rofi.case-sensitive: false
+rofi.matching: fuzzy

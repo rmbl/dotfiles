@@ -38,6 +38,7 @@ mkdir -p $HOME/.config
 lnif $PWD/awesome $HOME/.config/awesome
 lnif $PWD/nvim $HOME/.config/nvim
 lnif $PWD/compton.conf $HOME/.config/compton.conf
+lnif $PWD/rofi $HOME/.config/rofi
 
 # Directories
 lnif $PWD/bin $HOME/.bin
