@@ -1,5 +1,6 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
+local gears = require("gears")
 
 local config = {}
 
@@ -51,6 +52,32 @@ function config.init(context)
             callback(stdout, stderr, reason, exit_code)
             if c then c:emit_signal("focus") end
         end)
+    end
+
+    -- Show widget on mouse::enter on parent, hide after mouse::leave + timeout
+    context.util.show_on_mouse = function(parent, widget, timeout)
+        local timer = gears.timer {
+            timeout = timeout or 5,
+            callback = function()
+                widget:set_visible(false)
+            end,
+        }
+        timer:start()
+
+        parent:connect_signal("mouse::enter", function()
+            widget:set_visible(true)
+            timer:stop()
+        end)
+
+        parent:connect_signal("mouse::leave", function()
+            timer:start()
+        end)
+    end
+
+    context.util.set_colors = function(colors)
+        -- Override colors with context.colors per default
+        -- (Allows a theme to be based on another)
+        context.colors = gears.table.join(colors, context.colors)
     end
 
 end

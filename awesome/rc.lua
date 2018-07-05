@@ -55,8 +55,10 @@ context.keys.altkey = "Mod1"
 -- {{{ Variable definitions
 
 local themes = {
-    "multicolor",      -- 1
-    "darkblue"         -- 2
+    "multicolor",        -- 1
+    "darkblue",          -- 2
+    "blackout",          -- 3
+    "powerarrow-gruvbox" -- 4
 }
 context.theme                = themes[2]
 context.vars.terminal        = "urxvt"
@@ -67,12 +69,13 @@ context.vars.rofi_settings   = "rofi -show combi"
 
 awful.util.terminal = context.vars.terminal
 
+config.util.init(context)
+
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), context.theme)
 beautiful.init(theme_path)
 -- }}}
 
 config.widgets.init(context)
-config.util.init(context)
 config.menu.init(context)
 config.keys.init(context)
 config.keys_client.init(context)
