@@ -134,13 +134,6 @@ theme.titlebar_maximized_button_focus_active    = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 --theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
 
--- Application icons
-theme.chrome                                    = theme.dir .. "/icons/apps/chrome.png"
-theme.webstorm                                  = theme.dir .. "/icons/apps/webstorm.png"
-theme.idea                                      = theme.dir .. "/icons/apps/idea.png"
-theme.pycharm                                   = theme.dir .. "/icons/apps/pycharm.png"
-theme.teamviewer                                = theme.dir .. "/icons/apps/teamviewer.png"
-theme.vivaldi                                   = theme.dir .. "/icons/apps/vivaldi.png"
 
 -- colors
 theme.green          = "#00b159"
@@ -393,13 +386,6 @@ local volume_widget = wibox.container.background(wibox.container.margin(wibox.wi
 kbd_widget = awful.widget.keyboardlayout:new()
 local kbd_widget = wibox.container.background(wibox.container.margin(wibox.widget { kbd_widget, layout = wibox.layout.align.horizontal }, 0, 0, 0, 0), theme.green)
 
--- -- Chrome_button
-local chrome_button = awful.widget.button({ image = theme.chrome })
-chrome_button.forced_width = 20
-chrome_button:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () awful.util.spawn("google-chrome-stable") end)
-))
-
 function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
@@ -441,7 +427,6 @@ function theme.at_screen_connect(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
-            chrome_button,
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
