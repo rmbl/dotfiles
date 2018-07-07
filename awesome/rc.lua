@@ -64,7 +64,7 @@ context.theme                = themes[2]
 context.vars.terminal        = "urxvt"
 context.vars.editor          = os.getenv("EDITOR") or "vim"
 context.vars.gui_editor      = "code"
-context.vars.browser         = "google-chrome-stable"
+context.vars.browser         = "firefox"
 context.vars.rofi_settings   = "rofi -show combi"
 
 awful.util.terminal = context.vars.terminal
