@@ -825,10 +825,7 @@ function theme.at_screen_connect(s)
     gears.wallpaper.maximized(wallpaper, s, true)
 
     -- Tags
-    awful.tag(awful.util.tagnames, s, awful.util.layouts)
-
-    -- Create a promptbox for each screen
-    s._promptbox = awful.widget.prompt()
+    awful.tag(context.vars.tags, s, context.vars.layouts)
 
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
@@ -841,7 +838,7 @@ function theme.at_screen_connect(s)
     )
 
     -- Create a taglist widget
-    s._taglist = awful.widget.taglist(s, context.util.rowfilter, awful.util.taglist_buttons)
+    s._taglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
     local gen_tasklist = function()
         -- Create a tasklist widget
