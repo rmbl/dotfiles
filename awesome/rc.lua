@@ -69,6 +69,10 @@ context.vars.gui_editor      = "code"
 context.vars.browser         = "firefox"
 context.vars.rofi_settings   = "rofi -show combi"
 
+-- context.vars.batteries       = { "BAT0" }
+context.vars.ac              = "AC"
+context.vars.net_iface       = "enp7s0"
+
 context.vars.tags = { " www ", " </> ", " >_ ", " etc ", " # " }
 context.vars.layouts = {
     awful.layout.suit.tile,

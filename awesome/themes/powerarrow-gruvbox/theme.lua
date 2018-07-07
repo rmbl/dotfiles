@@ -59,8 +59,6 @@ colors = context.colors
 
 local fs_bg             = colors.bw_2
 local temp_bg           = colors.bw_2
-local pacman_bg         = colors.bw_2
-local users_bg          = colors.bw_2
 local sysload_bg        = colors.bw_2
 local cpu_bg            = colors.bw_2
 local mem_bg            = colors.bw_2
@@ -102,11 +100,16 @@ theme.taglist_font                              = theme.font_bold
 theme.taglist_fg_normal                         = theme.fg_normal
 theme.taglist_fg_focus                          = theme.fg_focus
 theme.taglist_fg_urgent                         = colors.bw_0
-theme.taglist_bg_normal                         = colors.bw_0
-theme.taglist_bg_occupied                       = colors.bw_0
-theme.taglist_bg_empty                          = colors.bw_0
-theme.taglist_bg_volatile                       = colors.bw_0
-theme.taglist_bg_focus                          = colors.bw_0
+--theme.taglist_bg_normal                         = colors.bw_0
+--theme.taglist_bg_occupied                       = colors.bw_0
+--theme.taglist_bg_empty                          = colors.bw_0
+--theme.taglist_bg_volatile                       = colors.bw_0
+--theme.taglist_bg_focus                          = colors.bw_0
+theme.taglist_bg_normal                         = colors.bw_1
+theme.taglist_bg_occupied                       = colors.bw_1
+theme.taglist_bg_empty                          = colors.bw_1
+theme.taglist_bg_volatile                       = colors.bw_1
+theme.taglist_bg_focus                          = colors.bw_1
 theme.taglist_bg_urgent                         = colors.red_2
 
 theme.tasklist_font_normal                      = theme.font
@@ -637,80 +640,92 @@ vol_widget:buttons(gears.table.join(
 
 -- BAT
 --luacheck: push ignore widget bat_now
-local baticon = wibox.widget.imagebox(theme.widget_battery)
-local bat = lain.widget.bat {
-    notify = "off",
-    batteries = context.vars.batteries,
-    ac = context.vars.ac,
-    settings = function()
-        local _color = theme.fg_normal
-        local _font = theme.font
+local bat_widget
+local bat_left_margin = dpi(2)
+local bat_right_margin = dpi(10)
+local vol_right_margin = dpi(6)
 
-        if bat_now.status ~= "N/A" then
-            if tonumber(bat_now.perc) <= 10 then
-                baticon:set_image(theme.widget_battery_empty)
-                _color = colors.red_2
-                _font = theme.font_bold
-            elseif tonumber(bat_now.perc) <= 20 then
-                baticon:set_image(theme.widget_battery_low)
-                _color = colors.orange_2
-                _font = theme.font_bold
-            elseif tonumber(bat_now.perc) <= 30 then
-                baticon:set_image(theme.widget_battery_low)
-                _color = colors.yellow_2
-                _font = theme.font_bold
-            elseif tonumber(bat_now.perc) <= 50 then
-                baticon:set_image(theme.widget_battery_low)
-            else
-                baticon:set_image(theme.widget_battery)
-            end
+if context.vars.batteries then
+    local baticon = wibox.widget.imagebox(theme.widget_battery)
+    local bat = lain.widget.bat {
+        notify = "off",
+        batteries = context.vars.batteries,
+        ac = context.vars.ac,
+        settings = function()
+            local _color = theme.fg_normal
+            local _font = theme.font
 
-            if tonumber(bat_now.perc) <= 3 and not bat_now.ac_status == 1 then
-                if bat_now.notification then
-                    naughty.destroy(bat_now.notification)
-                end
-                bat_now.notification = naughty.notify {
-                    title = "Battery",
-                    text = "Your battery is running low.\n"
-                        .. "You should plug in your PC.",
-                    preset = naughty.config.presets.critical,
-                    timeout = 0,
-                }
-            end
-
-            if bat_now.ac_status == 1 then
-                baticon:set_image(theme.widget_ac)
-                if tonumber(bat_now.perc) >= 95 then
-                    _color = colors.green_2
+            if bat_now.status ~= "N/A" then
+                if tonumber(bat_now.perc) <= 10 then
+                    baticon:set_image(theme.widget_battery_empty)
+                    _color = colors.red_2
                     _font = theme.font_bold
+                elseif tonumber(bat_now.perc) <= 20 then
+                    baticon:set_image(theme.widget_battery_low)
+                    _color = colors.orange_2
+                    _font = theme.font_bold
+                elseif tonumber(bat_now.perc) <= 30 then
+                    baticon:set_image(theme.widget_battery_low)
+                    _color = colors.yellow_2
+                    _font = theme.font_bold
+                elseif tonumber(bat_now.perc) <= 50 then
+                    baticon:set_image(theme.widget_battery_low)
+                else
+                    baticon:set_image(theme.widget_battery)
                 end
+
+                if tonumber(bat_now.perc) <= 3 and not bat_now.ac_status == 1 then
+                    if bat_now.notification then
+                        naughty.destroy(bat_now.notification)
+                    end
+                    bat_now.notification = naughty.notify {
+                        title = "Battery",
+                        text = "Your battery is running low.\n"
+                            .. "You should plug in your PC.",
+                        preset = naughty.config.presets.critical,
+                        timeout = 0,
+                    }
+                end
+
+                if bat_now.ac_status == 1 then
+                    baticon:set_image(theme.widget_ac)
+                    if tonumber(bat_now.perc) >= 95 then
+                        _color = colors.green_2
+                        _font = theme.font_bold
+                    end
+                end
+            else
+                baticon:set_image(theme.widget_ac)
             end
-        else
-            baticon:set_image(theme.widget_ac)
-        end
 
-        widget:set_markup(markup.fontfg(_font, _color, bat_now.perc))
-    end,
-}
+            widget:set_markup(markup.fontfg(_font, _color, bat_now.perc))
+        end,
+    }
 
-local bat_widget = wibox.widget {
-    baticon, bat.widget,
-    layout = wibox.layout.align.horizontal,
-}
+    bat_widget = wibox.widget {
+        baticon, bat.widget,
+        layout = wibox.layout.align.horizontal,
+    }
 
-bat_widget:buttons(awful.button({ }, 1, function()
-    awful.spawn.easy_async(context.vars.scripts_dir .. "/show-battery-status", function(stdout, stderr, reason, exit_code)
-        if bat_widget.notification then
-            naughty.destroy(bat_widget.notification)
-        end
-        bat.update()
-        bat_widget.notification = naughty.notify {
-            title = "Battery",
-            text = string.gsub(stdout, '\n*$', ''),
-            timeout = 10,
-        }
-    end)
-end))
+    bat_widget:buttons(awful.button({ }, 1, function()
+        awful.spawn.easy_async(context.vars.scripts_dir .. "/show-battery-status", function(stdout, stderr, reason, exit_code)
+            if bat_widget.notification then
+                naughty.destroy(bat_widget.notification)
+            end
+            bat.update()
+            bat_widget.notification = naughty.notify {
+                title = "Battery",
+                text = string.gsub(stdout, '\n*$', ''),
+                timeout = 10,
+            }
+        end)
+    end))
+else
+    bat_widget = nil
+    bat_left_margin = 0
+    bat_right_margin = 0
+    vol_right_margin = dpi(10)
+end
 --luacheck: pop
 
 -- -- WEATHER
@@ -945,7 +960,7 @@ function theme.at_screen_connect(s)
                             s._layoutbox,
                         },
                         left = dpi(8),
-                        right = dpi(3),
+                        right = dpi(5),
                         top = dpi(4),
                         bottom = dpi(4),
                         widget = wibox.container.margin,
@@ -953,6 +968,8 @@ function theme.at_screen_connect(s)
                     bg = clock_bg,
                     widget = wibox.container.background,
                 },
+
+                arrow_r(clock_bg, theme.taglist_bg_normal),
 
                 { -- Taglist
                     {
@@ -968,23 +985,7 @@ function theme.at_screen_connect(s)
                     widget = wibox.container.background,
                 },
 
-                arrow_r(theme.taglist_bg_normal, theme.prompt_bg),
-
-                { -- Prompt box
-                    {
-                        {
-                            layout = wibox.layout.align.horizontal,
-                            s._promptbox,
-                        },
-                        left = dpi(8),
-                        right = dpi(4),
-                        widget = wibox.container.margin,
-                    },
-                    bg = theme.prompt_bg,
-                    widget = wibox.container.background,
-                },
-
-                arrow_r(theme.prompt_bg, theme.tasklist_bg_normal),
+                arrow_r(theme.taglist_bg_normal, theme.tasklist_bg_normal),
             },
 
             -- s._tasklist, -- Middle widget
@@ -995,14 +996,14 @@ function theme.at_screen_connect(s)
 
                 wibox.container.background(wibox.container.margin(systray_widget, dpi(0), dpi(8)), theme.tasklist_bg_normal),
 
-                arrow_l(theme.tasklist_bg_normal, pacman_bg),
-                -- wibox.container.background(wibox.container.margin(fs_widget,      dpi(2), dpi(6)), fs_bg),
-                -- wibox.container.background(wibox.container.margin(temp_widget,    dpi(2), dpi(6)), temp_bg),
-                wibox.container.background(wibox.container.margin(sysload_widget, dpi(2), dpi(6)),  sysload_bg),
-                wibox.container.background(wibox.container.margin(cpu_widget,     dpi(2), dpi(6)),  cpu_bg),
-                wibox.container.background(wibox.container.margin(mem_widget,     dpi(2), dpi(6)),  mem_bg),
-                wibox.container.background(wibox.container.margin(vol_widget,     dpi(2), dpi(6)),  vol_bg),
-                wibox.container.background(wibox.container.margin(bat_widget,     dpi(2), dpi(10)), bat_bg),
+                arrow_l(theme.tasklist_bg_normal, sysload_bg),
+                -- wibox.container.background(wibox.container.margin(fs_widget,        dpi(2), dpi(6)), fs_bg),
+                -- wibox.container.background(wibox.container.margin(temp_widget,      dpi(2), dpi(6)), temp_bg),
+                wibox.container.background(wibox.container.margin(sysload_widget,      dpi(2), dpi(6)),  sysload_bg),
+                wibox.container.background(wibox.container.margin(cpu_widget,          dpi(2), dpi(6)),  cpu_bg),
+                wibox.container.background(wibox.container.margin(mem_widget,          dpi(2), dpi(6)),  mem_bg),
+                wibox.container.background(wibox.container.margin(vol_widget,          dpi(2), vol_right_margin), vol_bg),
+                wibox.container.background(wibox.container.margin(bat_widget, bat_left_margin, bat_right_margin), bat_bg),
 
                 arrow_l(bat_bg, net_bg),
                 wibox.container.background(wibox.container.margin(net_widget,     dpi(8), dpi(10)), net_bg),
