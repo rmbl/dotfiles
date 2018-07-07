@@ -189,7 +189,7 @@ w17 = wibox.widget.imagebox(theme.w17)
 
 -- Widgets
 local clock_icon = wibox.widget.imagebox(theme.widget_clock)
-local clock = awful.widget.textclock("<span font=\"Meslo LGS Regular 10\" color=\"#32302f\"> %a %d %b  %H:%M </span>")
+local clock = awful.widget.textclock("<span font=\"Meslo LGS Regular 10\" color=\"#32302f\"> %H:%M </span>")
 local clock_widget = wibox.container.background(wibox.container.margin(wibox.widget {clock_icon, clock, layout = wibox.layout.align.horizontal }, 0, 1), theme.violet)
 
 -- Calendar
@@ -233,32 +233,32 @@ local bat = lain.widget.bat({
                 bat_icon:set_image(theme.widget_ac)
                 batspr_l:set_image(theme.w12)
                 batspr_r:set_image(theme.w10)
-                widget:set_markup(markup.font(theme.font, markup.bg.color(theme.blue, markup.fg.color(theme.fg_widget," +" .. bat_now.perc .. "% [" .. bat_now.watt .. "W][" .. bat_now.time .. "]"))))
-            elseif bat_now.status == "Full" then
+                widget:set_markup(markup.font(theme.font, markup.bg.color(theme.blue, markup.fg.color(theme.fg_widget," +" .. bat_now.perc .. "% [" .. bat_now.time .. "]"))))
+            elseif bat_now.status == "Full" or tonumber(bat_now.perc) == 100 then
                 bat_icon:set_image(theme.widget_ac)
                 batspr_l:set_image(theme.w8)
                 batspr_r:set_image(theme.w9)
-                widget:set_markup(markup.font(theme.font, markup.fg.color("#232323", " ~" .. bat_now.perc .. "% [" .. bat_now.watt .. "W][" .. bat_now.time .. "]")))
+                widget:set_markup(markup.font(theme.font, markup.fg.color("#232323", " ~" .. bat_now.perc .. "% ")))
             elseif tonumber(bat_now.perc) <= 35 then
                 bat_icon:set_image(theme.widget_battery_empty)
                 batspr_l:set_image(theme.w13)
                 batspr_r:set_image(theme.w11)
-                widget:set_markup(markup.font(theme.font, markup.bg.color(theme.red, markup.fg.color(theme.fg_widget, " -" .. bat_now.perc .. "% [" .. bat_now.watt .. "W][" .. bat_now.time .. "]"))))
+                widget:set_markup(markup.font(theme.font, markup.bg.color(theme.red, markup.fg.color(theme.fg_widget, " -" .. bat_now.perc .. "% [" .. bat_now.time .. "]"))))
             elseif tonumber(bat_now.perc) <= 70 then
                 bat_icon:set_image(theme.widget_battery_medium)
                 batspr_l:set_image(theme.w16)
                 batspr_r:set_image(theme.w14)
-                widget:set_markup(markup.font(theme.font, markup.bg.color(theme.yellow, markup.fg.color(theme.fg_widget, " -" .. bat_now.perc .. "% [" .. bat_now.watt .. "W][" .. bat_now.time .. "]"))))
+                widget:set_markup(markup.font(theme.font, markup.bg.color(theme.yellow, markup.fg.color(theme.fg_widget, " -" .. bat_now.perc .. "% [" .. bat_now.time .. "]"))))
             elseif tonumber(bat_now.perc) <= 90 then
                 bat_icon:set_image(theme.widget_battery)
                 batspr_l:set_image(theme.w17)
                 batspr_r:set_image(theme.w15)
-                widget:set_markup(markup.font(theme.font, markup.bg.color(theme.green, markup.fg.color(theme.fg_widget, " -" .. bat_now.perc .. "% [" .. bat_now.watt .. "W][" .. bat_now.time .. "]"))))
+                widget:set_markup(markup.font(theme.font, markup.bg.color(theme.green, markup.fg.color(theme.fg_widget, " -" .. bat_now.perc .. "% [" .. bat_now.time .. "]"))))
             else
                 bat_icon:set_image(theme.widget_battery)
                 batspr_l:set_image(theme.w12)
                 batspr_r:set_image(theme.w10)
-                widget:set_markup(markup.font(theme.font, markup.bg.color(theme.blue, markup.fg.color(theme.fg_widget, " -" .. bat_now.perc .. "% [" .. bat_now.watt .. "W][" .. bat_now.time .. "]"))))
+                widget:set_markup(markup.font(theme.font, markup.bg.color(theme.blue, markup.fg.color(theme.fg_widget, " -" .. bat_now.perc .. "% [" .. bat_now.time .. "]"))))
             end
         else
             widget:set_markup(markup.font(theme.font, markup.bg.color(theme.red, markup.fg.color(theme.fg_widget, " AC "))))
@@ -277,7 +277,7 @@ local battery_widget2 = wibox.container.background(wibox.container.margin(wibox.
 local mem_icon = wibox.widget.imagebox(theme.widget_mem)
 local mem = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.font(theme.font, markup.fg.color(theme.fg_widget, " " .. mem_now.used .. "MB [" .. mem_now.perc .. "%]")))
+        widget:set_markup(markup.font(theme.font, markup.fg.color(theme.fg_widget, " " .. mem_now.perc .. "%")))
     end
 })
 local mem_widget =  wibox.container.background(wibox.container.margin(wibox.widget { mem_icon, mem.widget, layout = wibox.layout.align.horizontal }, 0, 0), theme.pink)
