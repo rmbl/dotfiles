@@ -149,7 +149,7 @@ theme.menu_width                                = dpi(250)
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
 theme.tasklist_spacing                          = dpi(3)
-theme.useless_gap                               = dpi(14)
+theme.useless_gap                               = dpi(8)
 theme.systray_icon_spacing                      = dpi(4)
 
 theme.snap_bg                                   = theme.border_focus
