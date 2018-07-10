@@ -71,11 +71,7 @@ local theme = { }
 theme.name = "powerarrow-gruvbox"
 theme.dir = string.format("%s/.config/awesome/themes/%s", os.getenv("HOME"), theme.name)
 
--- theme.wallpaper                                 = theme.dir .. "/wallpapers/wall.png"
-
-theme.wallpaper_original                        = theme.dir .. "/wallpapers/matterhorn.jpg"
-theme.wallpaper                                 = theme.dir .. "/wallpapers/matterhorn_base.jpg"
-theme.wallpaper_blur                            = theme.dir .. "/wallpapers/matterhorn_blur.jpg"
+theme.wallpaper                                 = theme.dir .. "/wallpapers/deer.jpg"
 
 local font_size                                 = "10"
 local font_name                                 = "Meslo LGS Regular"
