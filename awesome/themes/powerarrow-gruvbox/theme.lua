@@ -177,6 +177,14 @@ theme.layout_tilebottom                         = theme.dir .. "/layouts/tilebot
 theme.layout_tileleft                           = theme.dir .. "/layouts/tileleft.png"
 theme.layout_tiletop                            = theme.dir .. "/layouts/tiletop.png"
 
+theme.lain_icons                                = os.getenv("HOME") .. "/.config/awesome/lain/icons/layout/default/"
+theme.layout_termfair                           = theme.lain_icons .. "termfair.png"
+theme.layout_centerfair                         = theme.lain_icons .. "centerfair.png"  -- termfair.center
+theme.layout_cascade                            = theme.lain_icons .. "cascade.png"
+theme.layout_cascadetile                        = theme.lain_icons .. "cascadetile.png" -- cascade.tile
+theme.layout_centerwork                         = theme.lain_icons .. "centerwork.png"
+theme.layout_centerworkh                        = theme.lain_icons .. "centerworkh.png" -- centerwork.horizontal
+
 theme.widget_ac                                 = theme.dir .. "/icons/ac.png"
 theme.widget_battery                            = theme.dir .. "/icons/battery.png"
 theme.widget_battery_low                        = theme.dir .. "/icons/battery_low.png"
