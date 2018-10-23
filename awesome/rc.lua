@@ -73,8 +73,7 @@ context.vars.rofi_settings   = "rofi -show combi"
 context.vars.ac              = "AC"
 context.vars.net_iface       = "enp7s0"
 
-context.vars.tags = { " www ", " </> ", " >_ ", " etc ", " # " }
-context.vars.layouts = {
+awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
     awful.layout.suit.tile.left,
@@ -99,9 +98,11 @@ context.vars.layouts = {
     --lain.layout.termfair.center,
 }
 
+context.vars.tags = { " www ", " </> ", " >_ ", " etc ", " # " }
+context.vars.layouts = { awful.layout.suit.tile, awful.layout.suit.tile, awful.layout.suit.tile, awful.layout.suit.tile, awful.layout.suit.tile }
+
 awful.util.terminal = context.vars.terminal
 awful.util.tagnames = context.vars.tags
-awful.layout.layouts = context.vars.layouts
 
 -- }}}
 
