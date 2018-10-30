@@ -6,11 +6,12 @@ cd vim/bundle/youcompleteme
 ./install.py
 cd ../../..
 
-wget https://github.com/Jguer/yay/releases/download/v2.219/yay_2.219_x86_64.tar.gz
-tar xfvz yay_2.219_x86_64.tar.gz
-cd yay_2.219_x86_64
-sudo ./yay -S yay
-rm -r yay_*
+wget https://github.com/Jguer/yay/releases/download/v8.1173.0/yay_8.1173.0_x86_64.tar.gz -O yay.tar.gz
+tar xfvz yay.tar.gz
+cd yay_8.1173.0_x86_64
+./yay -S yay
+cd ..
+rm -r yay*
 
 yay -S --noconfirm google-chrome betterlockscreen-git ruby-neovim brightnessctl
 
