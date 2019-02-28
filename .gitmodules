@@ -154,3 +154,6 @@
 [submodule "awesome/cyclefocus"]
 	path = awesome/cyclefocus
 	url = https://github.com/blueyed/awesome-cyclefocus
+[submodule "vim/bundle/vue"]
+	path = vim/bundle/vue
+	url = https://github.com/posva/vim-vue.git
