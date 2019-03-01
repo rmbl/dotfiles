@@ -1,5 +1,6 @@
 /vim/.*
 /vim/undofiles/
+/vim/plugged/
 /zsh/*.zwc
 /zsh/cache/
 /zsh/user.zsh
