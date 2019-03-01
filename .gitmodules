@@ -157,3 +157,6 @@
 [submodule "vim/bundle/vue"]
 	path = vim/bundle/vue
 	url = https://github.com/posva/vim-vue.git
+[submodule "vim/bundle/miniyank"]
+	path = vim/bundle/miniyank
+	url = https://github.com/bfredl/nvim-miniyank.git

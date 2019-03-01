@@ -100,6 +100,12 @@ map <C-t> :TagbarToggle<CR>
 map <C-Tab> :bnext<CR>
 map <C-S-Tab> :bprevious<CR>
 
+" MiniYank
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
+map <leader>n <Plug>(miniyank-cycle)
+map <leader>N <Plug>(miniyank-cycleback)
+
 " Add pastetoggle to paste without tag completion, etc
 set pastetoggle=<F2>
 
