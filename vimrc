@@ -36,6 +36,18 @@ Plug 'docunext/closetag.vim'
 " Linting/Checking
 Plug 'neomake/neomake'
 
+" Completion
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-cssomni'
+Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+
+" PHP
+Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
+Plug 'phpactor/ncm2-phpactor'
+
 " Syntax
 Plug 'rust-lang/rust.vim'
 Plug 'posva/vim-vue'
@@ -125,6 +137,11 @@ if !has('nvim')
     set t_AF=[38;5;%dm
     set vb t_vb=
 endif
+
+" NCM2
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+set shortmess+=c
 
 " CtrlP
 set wildmenu " Completion menu
