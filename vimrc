@@ -1,9 +1,72 @@
+call plug#begin('~/.vim/plugged')
+
+" Editor
+Plug 'itchyny/lightline.vim'
+Plug 'sinetoami/lightline-neomake'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'majutsushi/tagbar'
+Plug 'myusuf3/numbers.vim'
+Plug 'ervandew/supertab'
+Plug 'scrooloose/nerdtree'
+Plug 'corntrace/bufexplorer'
+Plug 'mhinz/vim-startify'
+
+" Colors
+Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
+Plug 'trusktr/seti.vim'
+Plug 'w0ng/vim-hybrid'
+
+" Tools
+Plug 'rking/ag.vim'
+Plug 'bfredl/nvim-miniyank'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sensible'
+Plug 'scrooloose/nerdcommenter'
+Plug 'sjbach/lusty'
+Plug 'Yggdroot/indentLine'
+Plug 'Raimondi/delimitMate'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-scripts/bufkill.vim'
+Plug 'docunext/closetag.vim'
+
+" Linting/Checking
+Plug 'neomake/neomake'
+
+" Completion
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-cssomni'
+Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+
+" PHP
+Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
+Plug 'phpactor/ncm2-phpactor'
+
+" Syntax
+Plug 'rust-lang/rust.vim'
+Plug 'posva/vim-vue'
+Plug 'StanAngeloff/php.vim'
+Plug 'elzr/vim-json'
+Plug 'groenewege/vim-less'
+Plug 'evidens/vim-twig'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'chrisbra/csv.vim'
+Plug 'nono/vim-handlebars'
+Plug 'othree/html5.vim'
+
+call plug#end()
+
 let mapleader=","
 let maplocalleader=",,"
 
 set nocompatible
 
-execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
@@ -75,6 +138,11 @@ if !has('nvim')
     set vb t_vb=
 endif
 
+" NCM2
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+set shortmess+=c
+
 " CtrlP
 set wildmenu " Completion menu
 set wildmode=list:longest
@@ -82,11 +150,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|vendor|node_modules)$'
 let g:ctrlp_max_files = 15000
 
-" Syntastic
-let g:syntastic_java_javac_config_file_enabled = 1
-let g:syntastic_php_phpcs_args = "--report=csv --standard=PSR2"
-
-let g:phpcomplete_index_composer_command = 'composer'
+" NeoMake
+call neomake#configure#automake('nrwi', 500)
 
 " Bindings
 "   BufExplorer
@@ -99,6 +164,12 @@ map <C-t> :TagbarToggle<CR>
 " Bind buffer switching to Ctrl+Tab
 map <C-Tab> :bnext<CR>
 map <C-S-Tab> :bprevious<CR>
+
+" MiniYank
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
+map <leader>n <Plug>(miniyank-cycle)
+map <leader>N <Plug>(miniyank-cycleback)
 
 " Add pastetoggle to paste without tag completion, etc
 set pastetoggle=<F2>
@@ -132,7 +203,7 @@ let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \   'right': [ [ 'neomake_warnings', 'neomake_errors', 'neomake_infos', 'neomake_ok', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
 	  \ 'component': {
 	  \   'lineinfo': ' %3l:%-2v',
@@ -147,11 +218,16 @@ let g:lightline = {
       \   'ctrlpmark': 'CtrlPMark',
       \ },
       \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
+      \   'neomake_infos': 'lightline#neomake#infos',
+      \   'neomake_warnings': 'lightline#neomake#warnings',
+      \   'neomake_errors': 'lightline#neomke#errors',
+      \   'neomake_ok': 'lightline#neomake#ok',
       \   'buffers': 'lightline#bufferline#buffers',
       \ },
       \ 'component_type': {
-      \   'syntastic': 'error',
+      \   'neomake_warnings': 'warning',
+      \   'neomake_errors': 'error',
+      \   'neomake_ok': 'left',
       \   'buffers': 'tabsel',
       \ },
       \ 'tabline': {
@@ -256,14 +332,5 @@ let g:tagbar_status_func = 'TagbarStatusFunc'
 function! TagbarStatusFunc(current, sort, fname, ...) abort
     let g:lightline.fname = a:fname
   return lightline#statusline(0)
-endfunction
-
-augroup AutoSyntastic
-  autocmd!
-  autocmd BufWritePost *.c,*.cpp call s:syntastic()
-augroup END
-function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
 endfunction
 

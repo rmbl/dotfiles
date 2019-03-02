@@ -7,7 +7,7 @@ alias cpd='cap production deploy'
 alias rs='rails s'
 alias rc='rails c'
 
-alias 'bk=cd $OLDPWD'
+alias bk='cd $OLDPWD'
 
 alias ls='ls --color=auto -h'
 alias sl="ls"
@@ -17,7 +17,7 @@ alias la='ls -la'
 alias lh='ls -d .*'
 alias lsd='ls -aFhlG'
 alias lash="ls -lAsh"
-alias 'dus=du -sckx * | sort -nr' #directories sorted by size
+alias dus='du -sckx * | sort -nr' #directories sorted by size
 
 alias ga='git add'
 alias gp='git push'
@@ -67,6 +67,8 @@ alias json="python -m json.tool"
 alias perms="stat -c '%A %a %n'"
 
 # Run commands in the web container using docker-compose
+alias dcu="docker-compose up"
+alias dcb="docker-compose pull && docker-compose build --pull"
 alias drw="docker-compose run -e PHP_IDE_CONFIG=serverName=0.0.0.0 web"
 alias drwp="docker-compose run web php -d xdebug.remote_enable=0 -d xdebug.profiler_enable=0 -d xdebug.default_enable=0"
 
