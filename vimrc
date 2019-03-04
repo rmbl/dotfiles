@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 " Editor
 Plug 'itchyny/lightline.vim'
 Plug 'sinetoami/lightline-neomake'
+Plug 'mengelbrecht/lightline-bufferline'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar'
@@ -59,6 +60,7 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'chrisbra/csv.vim'
 Plug 'nono/vim-handlebars'
 Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
@@ -142,6 +144,16 @@ endif
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 set shortmess+=c
+" Include use statement
+nmap <Leader>u :call phpactor#UseAdd()<CR>
+" Invoke the context menu
+nmap <Leader>mm :call phpactor#ContextMenu()<CR>
+" Invoke the navigation menu
+nmap <Leader>nn :call phpactor#Navigate()<CR>
+" Goto definition of class or class member under the cursor
+nmap <Leader>o :call phpactor#GotoDefinition()<CR>
+" Show brief information about the symbol under the cursor
+nmap <Leader>K :call phpactor#Hover()<CR>
 
 " CtrlP
 set wildmenu " Completion menu
