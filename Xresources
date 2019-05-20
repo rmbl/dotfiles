@@ -90,3 +90,5 @@ URxvt.url-launcher           : /usr/bin/google-chrome
 URxvt.colorUL                : #78A4FF
 URxvt*keysym.Home            : \033[1~
 URxvt*keysym.End             : \033[4~
+URxvt.keysym.KP_Home         : \033[1~
+URxvt.keysym.KP_End          : \033[4~
