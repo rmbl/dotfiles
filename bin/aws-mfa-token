@@ -20,7 +20,7 @@ config = configparser.ConfigParser()
 config.read(args.credential_path)
 
 if args.profile not in config.sections():
-    parser.error('Invalid profile. Section not found in ~/.aws/credentails')
+    parser.error('Invalid profile. Section not found in ~/.aws/credentials')
 
 if args.arn is None:
     if 'aws_arn_mfa' not in config[args.profile]:
