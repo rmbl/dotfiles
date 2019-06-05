@@ -71,7 +71,7 @@ local theme = { }
 theme.name = "powerarrow-gruvbox"
 theme.dir = string.format("%s/.config/awesome/themes/%s", os.getenv("HOME"), theme.name)
 
-theme.wallpaper                                 = theme.dir .. "/wallpapers/deer.jpg"
+theme.wallpaper                                 = theme.dir .. "/wallpapers/matterhorn.jpg"
 
 local font_size                                 = "10"
 local font_name                                 = "Meslo LGS Regular"
@@ -712,7 +712,7 @@ if context.vars.batteries then
     }
 
     bat_widget:buttons(awful.button({ }, 1, function()
-        awful.spawn.easy_async(context.vars.scripts_dir .. "/show-battery-status", function(stdout, stderr, reason, exit_code)
+        awful.spawn.easy_async("/usr/bin/acpi", function(stdout, stderr, reason, exit_code)
             if bat_widget.notification then
                 naughty.destroy(bat_widget.notification)
             end
