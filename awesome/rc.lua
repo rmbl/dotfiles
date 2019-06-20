@@ -63,7 +63,7 @@ context.keys.altkey = "Mod1"
 context.vars = { }
 context.vars.scripts_dir = os.getenv("HOME") .. "/.bin"
 
-context.vars.terminal        = "urxvt"
+context.vars.terminal        = "alacritty"
 context.vars.editor          = os.getenv("EDITOR") or "vim"
 context.vars.gui_editor      = "code"
 context.vars.browser         = "firefox"

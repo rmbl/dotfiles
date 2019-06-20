@@ -160,4 +160,11 @@ function zurl {
 	fi
 }
 
+function sslinfo {
+	if [[ -z $1 ]]; then
+		print "USAGE: $0 <URL>"
+		return 1
+	fi
 
+    curl --insecure -v https://$1 2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
+}
