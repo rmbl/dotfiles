@@ -2,7 +2,7 @@ call plug#begin('~/.vim/plugged')
 
 " Editor
 Plug 'itchyny/lightline.vim'
-Plug 'sinetoami/lightline-neomake'
+Plug 'maximbaz/lightline-ale'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -35,7 +35,7 @@ Plug 'vim-scripts/bufkill.vim'
 Plug 'docunext/closetag.vim'
 
 " Linting/Checking
-Plug 'neomake/neomake'
+Plug 'dense-analysis/ale'
 
 " Completion
 Plug 'ncm2/ncm2'
@@ -162,9 +162,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|vendor|node_modules)$'
 let g:ctrlp_max_files = 15000
 
-" NeoMake
-call neomake#configure#automake('nrwi', 500)
-
 " Bindings
 "   BufExplorer
 map <C-b> :BufExplorer<CR>
@@ -215,7 +212,7 @@ let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-      \   'right': [ [ 'neomake_warnings', 'neomake_errors', 'neomake_infos', 'neomake_ok', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
 	  \ 'component': {
 	  \   'lineinfo': ' %3l:%-2v',
@@ -230,16 +227,17 @@ let g:lightline = {
       \   'ctrlpmark': 'CtrlPMark',
       \ },
       \ 'component_expand': {
-      \   'neomake_infos': 'lightline#neomake#infos',
-      \   'neomake_warnings': 'lightline#neomake#warnings',
-      \   'neomake_errors': 'lightline#neomke#errors',
-      \   'neomake_ok': 'lightline#neomake#ok',
+      \   'linter_checking': 'lightline#ale#checking',
+      \   'linter_warnings': 'lightline#ale#warnings',
+      \   'linter_errors': 'lightline#ale#errors',
+      \   'linter_ok': 'lightline#ale#ok',
       \   'buffers': 'lightline#bufferline#buffers',
       \ },
       \ 'component_type': {
-      \   'neomake_warnings': 'warning',
-      \   'neomake_errors': 'error',
-      \   'neomake_ok': 'left',
+      \   'linter_checking': 'left',
+      \   'linter_warnings': 'warning',
+      \   'linter_errors': 'error',
+      \   'linter_ok': 'left',
       \   'buffers': 'tabsel',
       \ },
       \ 'tabline': {
@@ -259,6 +257,11 @@ let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#unicode_symbols = 1
 set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
+
+let g:lightline#ale#indicator_checking = "\uf110"
+let g:lightline#ale#indicator_warnings = "\uf071"
+let g:lightline#ale#indicator_errors = "\uf05e"
+let g:lightline#ale#indicator_ok = "\uf00c"
 
 function! MyModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
