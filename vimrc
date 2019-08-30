@@ -20,7 +20,6 @@ Plug 'trusktr/seti.vim'
 Plug 'w0ng/vim-hybrid'
 
 " Tools
-Plug 'rking/ag.vim'
 Plug 'bfredl/nvim-miniyank'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-eunuch'
@@ -30,9 +29,10 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'sjbach/lusty'
 Plug 'Yggdroot/indentLine'
 Plug 'Raimondi/delimitMate'
-Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/bufkill.vim'
 Plug 'docunext/closetag.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
+Plug 'junegunn/fzf.vim'
 
 " Linting/Checking
 Plug 'dense-analysis/ale'
@@ -173,6 +173,9 @@ map <C-t> :TagbarToggle<CR>
 " Bind buffer switching to Ctrl+Tab
 map <C-Tab> :bnext<CR>
 map <C-S-Tab> :bprevious<CR>
+
+" FZF
+nnoremap <C-p> :Files<CR>
 
 " MiniYank
 map p <Plug>(miniyank-autoput)
