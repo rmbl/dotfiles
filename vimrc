@@ -4,8 +4,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 Plug 'mengelbrecht/lightline-bufferline'
-Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
 Plug 'majutsushi/tagbar'
 Plug 'myusuf3/numbers.vim'
 Plug 'ervandew/supertab'
@@ -139,6 +139,9 @@ if !has('nvim')
     set t_AF=[38;5;%dm
     set vb t_vb=
 endif
+
+" Startify
+let g:startify_change_to_vcs_root = 1
 
 " NCM2
 autocmd BufEnter * call ncm2#enable_for_buffer()
