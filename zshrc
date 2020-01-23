@@ -30,6 +30,14 @@ PROMPT_EOL_MARK=""
 # add ~/bin to $PATH
 path=(~/.bin bin $path)
 
+if which yarn >/dev/null; then
+    path=(~/.yarn/bin $path)
+fi
+
+if which ruby >/dev/null && which gem >/dev/null; then
+    path=($(ruby -r rubygems -e 'puts Gem.user_dir')/bin $path)
+fi
+
 # Make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
 if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
@@ -77,3 +85,4 @@ source $ZSH/nvm.sh
 if [[ -f $ZSH/user.zsh ]]; then
 	source $ZSH/user.zsh
 fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
