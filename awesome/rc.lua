@@ -123,7 +123,6 @@ config.screen.init(context)
 
 context.util.run_once({
     "unclutter -root",
-    "compton --config ~/.config/compton.conf",
     "nm-applet --sm-disable",
     "xautolock -time 10 -locker '/usr/bin/betterlockscreen -l dimblur'"
 })
