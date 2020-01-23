@@ -61,6 +61,7 @@ Plug 'chrisbra/csv.vim'
 Plug 'nono/vim-handlebars'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'pearofducks/ansible-vim'
 
 call plug#end()
 
@@ -355,3 +356,4 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
   return lightline#statusline(0)
 endfunction
 
+let g:ansible_template_syntaxes = { '*.rb.j2': 'ruby', '*.yml.j2': 'yaml', '*.yaml.j2': 'yaml' }
