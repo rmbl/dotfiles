@@ -62,6 +62,8 @@ Plug 'nono/vim-handlebars'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'pearofducks/ansible-vim'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
 
 call plug#end()
 
