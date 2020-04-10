@@ -49,6 +49,9 @@ Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
 Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 Plug 'phpactor/ncm2-phpactor'
 
+" Rust
+Plug 'ncm2/ncm2-racer'
+
 " Syntax
 Plug 'rust-lang/rust.vim'
 Plug 'posva/vim-vue'

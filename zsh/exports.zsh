@@ -14,3 +14,7 @@ export EDITOR='nvim'
 export ANDROID_HOME="/home/pgildein/Android/Sdk"
 
 export LIBVIRT_DEFAULT_URI="qemu:///system"
+
+if which rustc >/dev/null; then
+    export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+fi
