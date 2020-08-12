@@ -30,11 +30,11 @@ PROMPT_EOL_MARK=""
 # add ~/bin to $PATH
 path=(~/.bin bin $path)
 
-if which yarn >/dev/null; then
+if which yarn >/dev/null 2>&1; then
     path=(~/.yarn/bin $path)
 fi
 
-if which ruby >/dev/null && which gem >/dev/null; then
+if which ruby >/dev/null 2>&1 && which gem >/dev/null 2>&1; then
     path=($(ruby -r rubygems -e 'puts Gem.user_dir')/bin $path)
 fi
 
