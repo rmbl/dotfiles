@@ -46,7 +46,7 @@ Plug 'ncm2/ncm2-cssomni'
 Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
 
 " PHP
-Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
+Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install --no-dev -o'}
 Plug 'phpactor/ncm2-phpactor'
 
 " Rust
