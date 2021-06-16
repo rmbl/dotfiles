@@ -168,3 +168,30 @@ function sslinfo {
 
     curl --insecure -v https://$1 2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
 }
+
+function release-full {
+    local version=$1
+    local fullVersion="v$version.0"
+
+    git checkout -b release/sprint-$version > /dev/null 2>&1
+    git push -u origin release/sprint-$version > /dev/null 2>&1
+    git tag $fullVersion > /dev/null 2>&1
+    git push --tags > /dev/null 2>&1
+    gc master > /dev/null 2>&1
+    echo "Released $fullVersion"
+}
+
+function release-fix {
+    local lasttag=`git tag -l --sort=-version:refname | grep "^v[0-9]*\.[0-9]*" | head -1 2> /dev/null` || true
+    lasttag=${lasttag:1}
+
+    IFS=. read -r major minor <<<"$lasttag"
+
+    minor=$(expr "$minor" + 1)
+    local newVersion="v$major.$minor"
+
+    git tag "$newVersion" > /dev/null 2>&1
+    git push --tags > /dev/null 2>&1
+
+    echo "Released $newVersion"
+}
