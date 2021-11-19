@@ -67,6 +67,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'pearofducks/ansible-vim'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
