@@ -71,7 +71,7 @@ alias perms="stat -c '%A %a %n'"
 alias dcu="docker-compose up"
 alias dcb="docker-compose pull; docker-compose build --pull"
 alias drw="docker-compose run -e PHP_IDE_CONFIG=serverName=0.0.0.0 web"
-alias drwp="docker-compose run web php -d xdebug.remote_enable=0 -d xdebug.profiler_enable=0 -d xdebug.default_enable=0"
+alias drwp="docker-compose run web php -d xdebug.mode=off"
 
 # Switch keyboard layout
 alias setus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys"
